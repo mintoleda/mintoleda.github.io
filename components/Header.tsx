@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Disc } from "lucide-react";
-import { ModeToggle } from "@/components/mode-toggle";
+import { SimpleModeToggle } from "@/components/simple-mode-toggle";
 
 export default function Header() {
   return (
@@ -34,7 +34,7 @@ export default function Header() {
           <Button variant="outline" size="sm" asChild>
             <Link href="https://github.com/mintoleda" target="_blank">GitHub</Link>
           </Button>
-          <ModeToggle />
+          <SimpleModeToggle />
         </div>
       </div>
     </header>

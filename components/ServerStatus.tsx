@@ -1,7 +1,18 @@
+"use client"
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Server, Activity, ShieldCheck, Cpu } from "lucide-react";
+import { Server, Activity, ShieldCheck, Cpu, Play, Pause, RotateCcw } from "lucide-react";
 
 export default function ServerStatus() {
+    const [innerSpinning, setInnerSpinning] = useState(false);
+    const [rotation, setRotation] = useState(0);
+
+    const handleReset = () => {
+        setInnerSpinning(false);
+        setRotation(0);
+    };
+
     return (
         <section id="server" className="container py-24">
             <div className="rounded-3xl border bg-card text-card-foreground shadow-sm overflow-hidden">
@@ -15,9 +26,9 @@ export default function ServerStatus() {
                                 </span>
                                 System Online
                             </div>
-                            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Homelab & Server</h2>
+                            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Homelab &amp; Server</h2>
                             <p className="text-muted-foreground md:text-xl">
-                                I host my own infrastructure. From media servers to development environments, it's all running on my personal hardware.
+                                I host my own infrastructure. From media servers to development environments, it&apos;s all running on my personal hardware.
                             </p>
                         </div>
 
@@ -47,11 +58,17 @@ export default function ServerStatus() {
                         </div>
                     </div>
 
-                    <div className="bg-muted/50 p-8 md:p-12 flex items-center justify-center border-t lg:border-t-0 lg:border-l">
+                    <div className="bg-muted/50 p-8 md:p-12 flex flex-col items-center justify-center border-t lg:border-t-0 lg:border-l gap-6">
                         <div className="relative w-full max-w-sm aspect-square rounded-full border-4 border-dashed border-primary/20 flex items-center justify-center animate-[spin_60s_linear_infinite]">
                             <div className="absolute inset-0 rounded-full border-4 border-primary/10 scale-90"></div>
                             <div className="absolute inset-0 rounded-full border-4 border-primary/5 scale-75"></div>
-                            <div className="text-center space-y-2 z-10 animate-none" style={{ animationDirection: 'reverse' }}>
+                            <div
+                                className="text-center space-y-2 z-10"
+                                style={{
+                                    animation: innerSpinning ? 'innerSpin 5s linear infinite' : 'none',
+                                    transform: `rotate(${rotation}deg)`,
+                                }}
+                            >
                                 <Server className="h-16 w-16 mx-auto text-primary" />
                                 <div className="font-mono text-xs text-muted-foreground">
                                     <div>CPU: 12%</div>
@@ -60,9 +77,38 @@ export default function ServerStatus() {
                                 </div>
                             </div>
                         </div>
+
+                        <div className="flex items-center gap-2">
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                onClick={() => setInnerSpinning(!innerSpinning)}
+                                title={innerSpinning ? "Pause" : "Play"}
+                            >
+                                {innerSpinning ? (
+                                    <Pause className="h-4 w-4" />
+                                ) : (
+                                    <Play className="h-4 w-4" />
+                                )}
+                            </Button>
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                onClick={handleReset}
+                                title="Reset"
+                            >
+                                <RotateCcw className="h-4 w-4" />
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <style jsx>{`
+                @keyframes innerSpin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+            `}</style>
         </section>
     );
 }
