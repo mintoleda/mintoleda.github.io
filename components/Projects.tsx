@@ -68,12 +68,12 @@ export default function Projects() {
                             </div>
                         </CardContent>
                         <CardFooter className="flex gap-2">
-                            <Button variant="outline" size="sm" className="w-full" asChild>
+                            <Button variant="outline" size="sm" className="flex-1" asChild>
                                 <a href={project.github} target="_blank" rel="noopener noreferrer">
                                     <Github className="mr-2 h-4 w-4" /> Code
                                 </a>
                             </Button>
-                            <Button size="sm" className="w-full" asChild>
+                            <Button size="sm" className="flex-1" asChild>
                                 <a href={project.link} target="_blank" rel="noopener noreferrer">
                                     <ExternalLink className="mr-2 h-4 w-4" /> Demo
                                 </a>

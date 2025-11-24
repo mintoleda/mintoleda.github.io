@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Disc } from "lucide-react";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Header() {
   return (
@@ -12,7 +13,7 @@ export default function Header() {
             <span className="font-bold sm:inline-block">DevPortfolio</span>
           </Link>
         </div>
-        
+
         <nav className="flex items-center gap-6 text-sm font-medium">
           <Link href="#about" className="transition-colors hover:text-primary">
             About
@@ -31,8 +32,9 @@ export default function Header() {
             <span>Now Playing: Lo-fi Beats to Code To</span>
           </div>
           <Button variant="outline" size="sm" asChild>
-             <Link href="https://github.com/mintoleda" target="_blank">GitHub</Link>
+            <Link href="https://github.com/mintoleda" target="_blank">GitHub</Link>
           </Button>
+          <ModeToggle />
         </div>
       </div>
     </header>
