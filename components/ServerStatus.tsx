@@ -1,16 +1,58 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Server, Activity, ShieldCheck, Cpu, Play, Pause, RotateCcw } from "lucide-react";
+import { Server, Activity, ShieldCheck, Cpu } from "lucide-react";
 
 export default function ServerStatus() {
-    const [innerSpinning, setInnerSpinning] = useState(false);
     const [rotation, setRotation] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const lastAngleRef = useRef<number | null>(null);
+    const centerRef = useRef<{ x: number; y: number } | null>(null);
 
-    const handleReset = () => {
-        setInnerSpinning(false);
-        setRotation(0);
+    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        setIsDragging(true);
+        const rect = e.currentTarget.getBoundingClientRect();
+        centerRef.current = {
+            x: rect.left + rect.width / 2,
+            y: rect.top + rect.height / 2,
+        };
+
+        const angle = Math.atan2(
+            e.clientY - centerRef.current.y,
+            e.clientX - centerRef.current.x
+        ) * (180 / Math.PI);
+        lastAngleRef.current = angle;
+    };
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!isDragging || !centerRef.current || lastAngleRef.current === null) return;
+
+        const angle = Math.atan2(
+            e.clientY - centerRef.current.y,
+            e.clientX - centerRef.current.x
+        ) * (180 / Math.PI);
+
+        let delta = angle - lastAngleRef.current;
+
+        // Handle wrapping around 180/-180 degrees
+        if (delta > 180) delta -= 360;
+        if (delta < -180) delta += 360;
+
+        setRotation((prev) => prev + delta);
+        lastAngleRef.current = angle;
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+        lastAngleRef.current = null;
+    };
+
+    const handleMouseLeave = () => {
+        if (isDragging) {
+            setIsDragging(false);
+            lastAngleRef.current = null;
+        }
     };
 
     return (
@@ -58,15 +100,21 @@ export default function ServerStatus() {
                         </div>
                     </div>
 
-                    <div className="bg-muted/50 p-8 md:p-12 flex flex-col items-center justify-center border-t lg:border-t-0 lg:border-l gap-6">
-                        <div className="relative w-full max-w-sm aspect-square rounded-full border-4 border-dashed border-primary/20 flex items-center justify-center animate-[spin_60s_linear_infinite]">
-                            <div className="absolute inset-0 rounded-full border-4 border-primary/10 scale-90"></div>
-                            <div className="absolute inset-0 rounded-full border-4 border-primary/5 scale-75"></div>
+                    <div className="bg-muted/50 p-8 md:p-12 flex flex-col items-center justify-center border-t lg:border-t-0 lg:border-l gap-4">
+                        <div
+                            className={`relative w-full max-w-sm aspect-square rounded-full border-4 border-dashed border-primary/20 flex items-center justify-center animate-[spin_60s_linear_infinite] ${isDragging ? 'cursor-grabbing' : 'cursor-grab'} select-none`}
+                            onMouseDown={handleMouseDown}
+                            onMouseMove={handleMouseMove}
+                            onMouseUp={handleMouseUp}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            <div className="absolute inset-0 rounded-full border-4 border-primary/10 scale-90 pointer-events-none"></div>
+                            <div className="absolute inset-0 rounded-full border-4 border-primary/5 scale-75 pointer-events-none"></div>
                             <div
-                                className="text-center space-y-2 z-10"
+                                className="text-center space-y-2 z-10 pointer-events-none"
                                 style={{
-                                    animation: innerSpinning ? 'innerSpin 5s linear infinite' : 'none',
                                     transform: `rotate(${rotation}deg)`,
+                                    transition: isDragging ? 'none' : 'transform 0.1s ease-out',
                                 }}
                             >
                                 <Server className="h-16 w-16 mx-auto text-primary" />
@@ -77,38 +125,12 @@ export default function ServerStatus() {
                                 </div>
                             </div>
                         </div>
-
-                        <div className="flex items-center gap-2">
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                onClick={() => setInnerSpinning(!innerSpinning)}
-                                title={innerSpinning ? "Pause" : "Play"}
-                            >
-                                {innerSpinning ? (
-                                    <Pause className="h-4 w-4" />
-                                ) : (
-                                    <Play className="h-4 w-4" />
-                                )}
-                            </Button>
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                onClick={handleReset}
-                                title="Reset"
-                            >
-                                <RotateCcw className="h-4 w-4" />
-                            </Button>
-                        </div>
+                        <p className="text-xs text-muted-foreground text-center">
+                            Click and drag to rotate
+                        </p>
                     </div>
                 </div>
             </div>
-            <style jsx>{`
-                @keyframes innerSpin {
-                    from { transform: rotate(0deg); }
-                    to { transform: rotate(360deg); }
-                }
-            `}</style>
         </section>
     );
 }
