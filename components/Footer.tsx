@@ -22,7 +22,7 @@ export default function Footer() {
 
                 <div className="space-y-2">
                     <p className="text-sm text-muted-foreground">
-                        © {new Date().getFullYear()} DevPortfolio. Built with Next.js, Tailwind & Shadcn UI.
+                        © {new Date().getFullYear()} Adetola Adetunji. Built with Next.js, Tailwind & Shadcn UI.
                     </p>
                     <p className="text-xs text-muted-foreground/60">
                         Music is the shorthand of emotion. - Leo Tolstoy
