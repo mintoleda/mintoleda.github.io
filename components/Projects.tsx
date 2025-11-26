@@ -36,7 +36,7 @@ const projects = [
         title: "WeatherApp",
         description: "Online weather application fetching real-time data from an API.",
         tags: ["Web App", "API", "JavaScript"],
-        link: "https://github.com/mintoleda/WeatherApp",
+        link: "https://adetola.dev/demos/weather-app",
         github: "https://github.com/mintoleda/WeatherApp",
     },
     {
