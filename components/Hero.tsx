@@ -13,7 +13,7 @@ export default function Hero() {
                 Adetola <span className="text-primary">Adetunji</span>
             </h1>
 
-            <p className="text-xl text-muted-foreground max-w-[42rem] leading-normal sm:text-2xl sm:leading-8">
+            <p className="text-lg text-muted-foreground/80 max-w-[42rem] leading-normal sm:text-xl sm:leading-8 font-light">
                 Undergraduate Student in Austin
             </p>
 

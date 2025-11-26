@@ -103,10 +103,42 @@ export default function ServerStatus() {
                     <div className="bg-muted/50 p-8 md:p-12 flex flex-col items-center justify-center border-t lg:border-t-0 lg:border-l gap-4">
                         <div
                             className={`relative w-full max-w-sm aspect-square rounded-full border-4 border-dashed border-primary/20 flex items-center justify-center animate-[spin_60s_linear_infinite] ${isDragging ? 'cursor-grabbing' : 'cursor-grab'} select-none`}
+                            style={{ touchAction: 'none' }}
                             onMouseDown={handleMouseDown}
                             onMouseMove={handleMouseMove}
                             onMouseUp={handleMouseUp}
                             onMouseLeave={handleMouseLeave}
+                            onTouchStart={(e) => {
+                                setIsDragging(true);
+                                const rect = e.currentTarget.getBoundingClientRect();
+                                centerRef.current = {
+                                    x: rect.left + rect.width / 2,
+                                    y: rect.top + rect.height / 2,
+                                };
+                                const touch = e.touches[0];
+                                const angle = Math.atan2(
+                                    touch.clientY - centerRef.current.y,
+                                    touch.clientX - centerRef.current.x
+                                ) * (180 / Math.PI);
+                                lastAngleRef.current = angle;
+                            }}
+                            onTouchMove={(e) => {
+                                if (!isDragging || !centerRef.current || lastAngleRef.current === null) return;
+                                const touch = e.touches[0];
+                                const angle = Math.atan2(
+                                    touch.clientY - centerRef.current.y,
+                                    touch.clientX - centerRef.current.x
+                                ) * (180 / Math.PI);
+                                let delta = angle - lastAngleRef.current;
+                                if (delta > 180) delta -= 360;
+                                if (delta < -180) delta += 360;
+                                setRotation((prev) => prev + delta);
+                                lastAngleRef.current = angle;
+                            }}
+                            onTouchEnd={() => {
+                                setIsDragging(false);
+                                lastAngleRef.current = null;
+                            }}
                         >
                             <div className="absolute inset-0 rounded-full border-4 border-primary/10 scale-90 pointer-events-none"></div>
                             <div className="absolute inset-0 rounded-full border-4 border-primary/5 scale-75 pointer-events-none"></div>
