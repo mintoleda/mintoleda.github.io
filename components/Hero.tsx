@@ -14,7 +14,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-xl text-muted-foreground max-w-[42rem] leading-normal sm:text-2xl sm:leading-8">
-                Undergraduate Student
+                Undergraduate Student in Austin
             </p>
 
             <div className="flex gap-4">

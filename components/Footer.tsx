@@ -6,19 +6,15 @@ export default function Footer() {
         <footer className="border-t py-12 md:py-16 lg:py-20 bg-muted/30">
             <div className="container flex flex-col items-center gap-8 text-center">
                 <div className="flex gap-6">
-                    <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                    <Link href="https://github.com/mintoleda" className="text-muted-foreground hover:text-primary transition-colors">
                         <Github className="h-6 w-6" />
                         <span className="sr-only">GitHub</span>
                     </Link>
-                    <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                        <Twitter className="h-6 w-6" />
-                        <span className="sr-only">Twitter</span>
-                    </Link>
-                    <Link href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                    <Link href="https://www.linkedin.com/in/adetola-adetunji/" className="text-muted-foreground hover:text-primary transition-colors">
                         <Linkedin className="h-6 w-6" />
                         <span className="sr-only">LinkedIn</span>
                     </Link>
-                    <Link href="mailto:hello@example.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    <Link href="mailto:adetolaadetunji08@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
                         <Mail className="h-6 w-6" />
                         <span className="sr-only">Email</span>
                     </Link>
