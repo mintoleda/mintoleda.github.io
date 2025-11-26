@@ -6,16 +6,15 @@ export default function Hero() {
         <section id="about" className="container flex flex-col items-center justify-center gap-6 py-24 md:py-32 lg:py-40 text-center">
             <div className="rounded-2xl bg-muted px-4 py-1.5 text-sm font-medium flex items-center gap-2">
                 <Music className="h-4 w-4 text-primary" />
-                <span>Coding to the rhythm</span>
+                <span>coding...</span>
             </div>
 
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl max-w-3xl">
-                Building software with <span className="text-primary">harmony</span> and precision.
+                Adetola<span className="text-primary">Adetunji</span>
             </h1>
 
             <p className="text-xl text-muted-foreground max-w-[42rem] leading-normal sm:text-2xl sm:leading-8">
-                I'm a software developer who loves open source, self-hosting, and good music.
-                Turning coffee into code and beats into bugs... wait, features.
+                Undergraduate Student
             </p>
 
             <div className="flex gap-4">
