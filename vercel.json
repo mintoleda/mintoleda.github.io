@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    // Rule for the base page (domain.com/demos/weather-app)
+    {
+      "source": "/demos/weather-app",
+      "destination": "https://weather-app-theta-one-12.vercel.app/"
+    },
+    // Rule for all assets (CSS, JS, images) and internal links
+    {
+      "source": "/demos/weather-app/(.*)",
+      "destination": "https://weather-app-abcd.vercel.app/$1"
+    }
+  ]
+}
