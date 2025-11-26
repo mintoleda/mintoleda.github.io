@@ -70,7 +70,7 @@ export default function ServerStatus() {
                             </div>
                             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">Homelab &amp; Server</h2>
                             <p className="text-muted-foreground md:text-xl">
-                                I host my own infrastructure. From media servers to development environments, it&apos;s all running on my personal hardware.
+                                Self-hosted server running with Docker Compose
                             </p>
                         </div>
 

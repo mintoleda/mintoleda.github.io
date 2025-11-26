@@ -10,7 +10,7 @@ export default function Hero() {
             </div>
 
             <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl max-w-3xl">
-                Adetola<span className="text-primary">Adetunji</span>
+                Adetola <span className="text-primary">Adetunji</span>
             </h1>
 
             <p className="text-xl text-muted-foreground max-w-[42rem] leading-normal sm:text-2xl sm:leading-8">

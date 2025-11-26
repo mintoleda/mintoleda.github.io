@@ -10,7 +10,7 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center space-x-2">
             <Disc className="h-6 w-6 text-primary animate-spin-slow" />
-            <span className="font-bold sm:inline-block">DevPortfolio</span>
+            <span className="font-bold sm:inline-block">Adetola</span>
           </Link>
 
           <span className="text-muted-foreground hidden sm:inline">|</span>
