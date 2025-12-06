@@ -51,12 +51,12 @@ const projects = [
     github: "https://github.com/mintoleda/mintoleda.github.io",
   },
   {
-    title: "server2",
+    title: "server",
     description:
       "Containerized server infrastructure for self-hosting services.",
     tags: ["Docker", "Infrastructure", "Self-Hosted"],
-    link: "https://github.com/mintoleda/server2",
-    github: "https://github.com/mintoleda/server2",
+    link: "https://github.com/mintoleda/server",
+    github: "https://github.com/mintoleda/server",
   },
 ];
 
