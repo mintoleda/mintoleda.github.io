@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Disc } from "lucide-react";
 import { SimpleModeToggle } from "@/components/simple-mode-toggle";
+import SpotifyNowPlaying from "./SpotifyNowPlaying";
 
 export default function Header() {
   return (
@@ -30,8 +31,7 @@ export default function Header() {
 
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-2 text-xs text-muted-foreground border rounded-full px-3 py-1">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            <span>Now Playing: Lo-fi Beats to Code To</span>
+            <SpotifyNowPlaying />
           </div>
           <Button variant="outline" size="sm" asChild>
             <Link href="https://github.com/mintoleda" target="_blank">GitHub</Link>
