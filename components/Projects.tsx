@@ -58,6 +58,14 @@ const projects = [
     link: "https://github.com/mintoleda/server",
     github: "https://github.com/mintoleda/server",
   },
+  {
+    title: "RESTful-Spotify-API",
+    description:
+      "A Vercel serverless function that fetches your Spotify 'Currently Playing' track data securely.",
+    tags: ["Vercel", "API", "Node.js"],
+    link: "https://rest-ful-spotify-api.vercel.app/api/now-playing",
+    github: "https://github.com/mintoleda/RESTful-Spotify-API",
+  },
 ];
 
 export default function Projects() {

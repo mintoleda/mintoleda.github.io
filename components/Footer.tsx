@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Github, Twitter, Linkedin, Mail } from "lucide-react";
+import SpotifyNowPlaying from "./SpotifyNowPlaying";
 
 export default function Footer() {
     return (
@@ -24,9 +25,9 @@ export default function Footer() {
                     <p className="text-sm text-muted-foreground">
                         © {new Date().getFullYear()} Adetola Adetunji. Built with Next.js, Tailwind & Shadcn UI.
                     </p>
-                    <p className="text-xs text-muted-foreground/60">
-                        Music is the shorthand of emotion. - Leo Tolstoy
-                    </p>
+                    <div className="flex justify-center pt-2">
+                        <SpotifyNowPlaying />
+                    </div>
                 </div>
             </div>
         </footer>
