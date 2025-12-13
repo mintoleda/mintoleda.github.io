@@ -4,13 +4,14 @@ import AboutMe from "@/components/bento/AboutMe";
 import SocialsCard from "@/components/bento/SocialsCard";
 import TimeLocation from "@/components/bento/TimeLocation";
 import LinkCard from "@/components/bento/LinkCard";
-import MapCard from "@/components/bento/MapCard";
 import FloatingHeader from "@/components/FloatingHeader";
+import GridBackground from "@/components/GridBackground";
 import { Code, Server, FileText } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background font-sans antialiased flex items-center justify-center py-24 relative">
+    <div className="min-h-screen font-sans antialiased flex items-center justify-center py-24 relative">
+      <GridBackground />
       <FloatingHeader />
 
       <BentoGrid>
@@ -44,24 +45,20 @@ export default function Home() {
         </div>
 
         <div className="md:col-span-1 flex flex-col gap-4">
-          <LinkCard
-            title="Projects"
-            href="#projects"
-            icon={<Code className="h-5 w-5" />}
-            className="flex-1 bg-gradient-to-br from-primary/10 to-transparent"
-          />
-          <LinkCard
-            title="Resume"
-            href="/resume.pdf"
-            icon={<FileText className="h-5 w-5" />}
-            className="flex-1"
-          />
+          <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <LinkCard
+              title="Projects"
+              href="#projects"
+              icon={<Code className="h-5 w-5" />}
+              className="bg-gradient-to-br from-primary/10 to-transparent"
+            />
+            <LinkCard
+              title="Resume"
+              href="/resume.pdf"
+              icon={<FileText className="h-5 w-5" />}
+            />
+          </div>
         </div>
-
-        <div className="md:col-span-1 flex flex-col gap-4">
-          <MapCard />
-        </div>
-
       </BentoGrid>
     </div>
   );
