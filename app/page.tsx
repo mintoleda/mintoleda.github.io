@@ -10,7 +10,7 @@ import { Code, Server, FileText } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen font-sans antialiased flex items-center justify-center py-24 relative">
+    <div className="min-h-screen font-sans antialiased flex items-center justify-center py-12 relative">
       <GridBackground />
       <FloatingHeader />
 
