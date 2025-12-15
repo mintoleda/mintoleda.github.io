@@ -18,9 +18,9 @@ export default function BentoItem({
         <div
             className={cn(
                 "bg-card text-card-foreground rounded-3xl border border-border/50 p-6 flex flex-col relative overflow-hidden",
-                colSpan === 2 && "md:col-span-2",
-                colSpan === 3 && "md:col-span-3",
-                colSpan === 4 && "md:col-span-4", // Full width
+                colSpan === 2 && "md:col-span-2 lg:col-span-2",
+                colSpan === 3 && "md:col-span-2 lg:col-span-3",
+                colSpan === 4 && "md:col-span-3 lg:col-span-4", // Full width
                 rowSpan === 2 && "md:row-span-2",
                 className
             )}

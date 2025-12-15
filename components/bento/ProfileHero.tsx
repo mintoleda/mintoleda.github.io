@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function ProfileHero() {
     return (
-        <BentoItem colSpan={2} rowSpan={2} className="justify-between">
+        <BentoItem colSpan={3} rowSpan={2} className="justify-between">
             <div className="space-y-4 z-10">
                 <div className="space-y-2">
                     <p className="text-sm text-muted-foreground font-medium">welcome</p>

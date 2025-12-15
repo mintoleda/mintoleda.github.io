@@ -19,43 +19,48 @@ export default function Home() {
         <ProfileHero />
         <AboutMe />
 
-        {/* Row 2 */}
-        <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-4">
-            <div className="bg-card rounded-3xl p-6 border border-border/50">
-              <h3 className="font-bold text-lg mb-2">Let&apos;s start working together!</h3>
-              <div className="space-y-1 text-sm text-muted-foreground">
-                <p>Contact Details</p>
-                <p className="text-foreground">adetolaadetunji08@gmail.com</p>
-                <p>Austin, TX</p>
-              </div>
+        {/* Row 2 - 4 column grid with 2 rows */}
+        <div className="md:col-span-2 lg:col-span-4 grid grid-cols-1 md:grid-cols-4 grid-rows-[auto_auto] gap-4">
+          {/* Row 2a */}
+          {/* Contact Card */}
+          <div className="bg-card rounded-3xl p-6 border border-border/50 flex flex-col justify-center">
+            <h3 className="font-bold text-lg mb-2">Let&apos;s start working together!</h3>
+            <div className="space-y-1 text-sm text-muted-foreground">
+              <p>Contact Details</p>
+              <p className="text-foreground">adetolaadetunji08@gmail.com</p>
+              <p>Austin, TX</p>
             </div>
+          </div>
+
+          {/* Time Location */}
+          <TimeLocation />
+
+          {/* Projects */}
+          <LinkCard
+            title="Projects"
+            href="#projects"
+            icon={<Code className="h-5 w-5" />}
+          />
+
+          {/* Resume */}
+          <LinkCard
+            title="Resume"
+            href="/resume.pdf"
+            icon={<FileText className="h-5 w-5" />}
+          />
+
+          {/* Row 2b */}
+          {/* Socials - spans 2 columns */}
+          <div className="md:col-span-2 [&>*]:h-full">
             <SocialsCard />
           </div>
 
-          <div className="space-y-4">
-            <TimeLocation />
+          {/* Server Status - spans 2 columns */}
+          <div className="md:col-span-2 [&>*]:h-full">
             <LinkCard
               title="Server Status"
               href="#server"
               icon={<Server className="h-5 w-5" />}
-              className="bg-muted/10"
-            />
-          </div>
-        </div>
-
-        <div className="md:col-span-1 flex flex-col gap-4">
-          <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <LinkCard
-              title="Projects"
-              href="#projects"
-              icon={<Code className="h-5 w-5" />}
-              className="bg-gradient-to-br from-primary/10 to-transparent"
-            />
-            <LinkCard
-              title="Resume"
-              href="/resume.pdf"
-              icon={<FileText className="h-5 w-5" />}
             />
           </div>
         </div>

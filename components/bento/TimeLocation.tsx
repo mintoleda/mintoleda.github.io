@@ -25,7 +25,7 @@ export default function TimeLocation() {
     }, []);
 
     return (
-        <BentoItem colSpan={1} className="justify-center items-center bg-muted/20">
+        <BentoItem colSpan={1} className="justify-center items-center">
             <div className="text-center space-y-1">
                 <h3 className="text-3xl font-serif font-medium">{time}</h3>
                 <p className="text-xs text-muted-foreground uppercase tracking-widest">
