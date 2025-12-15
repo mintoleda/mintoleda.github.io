@@ -26,16 +26,16 @@ export default function FloatingHeader() {
     return (
         <div
             className={cn(
-                "fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-3xl px-4 transition-all duration-300",
+                "fixed top-4 left-1/2 -translate-x-1/2 z-50 w-auto px-4 transition-all duration-300",
                 scrolled ? "top-4" : "top-8"
             )}
         >
-            <div className="flex items-center justify-between gap-4 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl p-2 pl-6 shadow-lg">
+            <div className="group flex items-center gap-4 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl p-2 pl-4 shadow-lg transition-all duration-300 hover:pr-4">
                 <div className="flex-1 min-w-0">
                     <SpotifyNowPlaying />
                 </div>
 
-                <div className="flex items-center gap-2 border-l border-border/20 pl-2">
+                <div className="flex items-center gap-2 border-l border-border/20 pl-2 max-w-0 overflow-hidden opacity-0 group-hover:max-w-[100px] group-hover:opacity-100 transition-all duration-300 ease-out">
                     <Button
                         variant="ghost"
                         size="icon"
