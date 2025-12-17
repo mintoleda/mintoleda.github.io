@@ -60,6 +60,9 @@ export default function FloatingHeader() {
                                 <a href="/pages/projects">Projects</a>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild>
+                                <a href="/pages/now">Now</a>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem asChild>
                                 <a href="/resources/resume.pdf" target="_blank" rel="noopener noreferrer">CV</a>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild>

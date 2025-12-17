@@ -40,7 +40,7 @@ export default function AboutPage() {
                             </li>
                             <li>My favorite color is Green.</li>
                             <li>
-                                I love listening to music, playing games, learning new things, and spending time with friends.
+                                I love listening to music, playing games, and learning new things.
                             </li>
                             <li>
                                 I love to learn about new people and topics! Email me about your special interests.
