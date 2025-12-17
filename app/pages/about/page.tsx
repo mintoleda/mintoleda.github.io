@@ -38,7 +38,17 @@ export default function AboutPage() {
                             <li>
                                 I'm currently studying Computer Science at the University of Texas at Austin, with a minor in Statistics and Data Science, and a concentration in Machine Learning & AI.
                             </li>
-                            <li>My favorite color is Green.</li>
+                            <li>
+                                My favorite color is{" "}
+                                <span className="relative group inline-block cursor-help">
+                                    <span className="text-primary font-bold">Green</span>
+                                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-bold text-primary-foreground bg-primary rounded-md opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 group-active:translate-y-0 pointer-events-none whitespace-nowrap z-50">
+                                        duh.
+                                        <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary"></span>
+                                    </span>
+                                </span>
+                                .
+                            </li>
                             <li>
                                 I love listening to music, playing games, and learning new things.
                             </li>
