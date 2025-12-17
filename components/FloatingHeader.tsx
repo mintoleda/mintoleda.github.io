@@ -51,16 +51,16 @@ export default function FloatingHeader() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-48 bg-card/90 backdrop-blur-xl border-border/40">
                             <DropdownMenuItem asChild>
-                                <a href="#home">Home</a>
+                                <a href="/">Home</a>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild>
-                                <a href="#about">About</a>
+                                <a href="/pages/about">About</a>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild>
-                                <a href="#projects">Projects</a>
+                                <a href="/pages/projects">Projects</a>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild>
-                                <a href="/resume.pdf">CV</a>
+                                <a href="/resources/resume.pdf" target="_blank" rel="noopener noreferrer">CV</a>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild>
                                 <a href="#contact">Contact</a>

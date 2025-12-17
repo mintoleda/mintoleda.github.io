@@ -6,15 +6,17 @@ import { cn } from "@/lib/utils";
 import SpotifyNowPlaying from "./SpotifyNowPlaying";
 
 const navItems = [
-    { name: "home", href: "#home" },
-    { name: "about", href: "#about" },
-    { name: "projects", href: "#projects" },
-    { name: "CV", href: "/resume.pdf" },
-    { name: "now", href: "#now" },
+    { name: "home", href: "/" }, // Changed to '/'
+    { name: "about", href: "/pages/about" },
+    { name: "projects", href: "/pages/projects" },
+    { name: "resume", href: "/resources/resume.pdf" },
+    { name: "now", href: "#now" }, // Kept as anchors if they exist or logic handles them? User didn't specify moving these.
     { name: "contact", href: "#contact" },
 ];
 
 export default function Sidebar() {
+    const pathname = usePathname();
+
     return (
         <aside className="fixed left-0 top-0 h-screen w-64 p-8 flex flex-col justify-between hidden md:flex z-50">
             <div>
@@ -22,15 +24,27 @@ export default function Sidebar() {
                     Adetola Adetunji
                 </h1>
                 <nav className="flex flex-col space-y-4">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            className="text-lg text-muted-foreground hover:text-primary transition-colors font-serif"
-                        >
-                            {item.name}
-                        </Link>
-                    ))}
+                    {navItems.map((item) => {
+                        const isResume = item.name === "resume";
+                        const isActive = pathname === item.href;
+
+                        return (
+                            <Link
+                                key={item.name}
+                                href={item.href}
+                                target={isResume ? "_blank" : undefined}
+                                rel={isResume ? "noopener noreferrer" : undefined}
+                                className={cn(
+                                    "text-lg transition-colors font-serif",
+                                    isActive
+                                        ? "text-primary font-medium"
+                                        : "text-muted-foreground hover:text-primary"
+                                )}
+                            >
+                                {item.name}
+                            </Link>
+                        );
+                    })}
                 </nav>
             </div>
 
