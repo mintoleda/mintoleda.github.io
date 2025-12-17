@@ -6,6 +6,7 @@ import Sidebar from "@/components/Sidebar";
 import ParticleImage from "@/components/ParticleImage";
 import FloatingHeader from "@/components/FloatingHeader";
 import { AliveIndicator } from "@/components/AliveIndicator";
+import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
 
 export default function Home() {
   const homeRef = useRef(null);
@@ -23,7 +24,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="h-screen overflow-hidden bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
+    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
       <Sidebar />
 
 
@@ -32,8 +33,10 @@ export default function Home() {
       </div>
 
 
-      <main className="md:ml-64 h-full relative">
-        <div className="max-w-4xl mx-auto px-6 h-full flex flex-col justify-center relative">
+
+
+      <main className="md:ml-64 min-h-screen relative">
+        <div className="max-w-4xl mx-auto px-6 py-4 md:py-0 min-h-[calc(100vh+60px)] md:min-h-0 md:h-screen flex flex-col justify-start md:justify-center relative">
 
 
           <section id="home" ref={homeRef} className="flex flex-col justify-center relative pb-12 opacity-0">
@@ -43,7 +46,7 @@ export default function Home() {
 
             <div className="relative z-10 space-y-6">
               <h1 className="text-6xl md:text-8xl font-serif font-bold tracking-tight">
-                Home
+                Adetola Adetunji
               </h1>
               <div className="h-px w-full bg-border max-w-md" />
 

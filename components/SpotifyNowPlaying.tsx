@@ -108,30 +108,32 @@ export default function SpotifyNowPlaying() {
     }
 
     return (
-        <div className="group flex items-center gap-3 text-sm text-muted-foreground animate-in fade-in duration-500">
+        <div className="group flex items-center gap-2 text-sm text-muted-foreground animate-in fade-in duration-500">
             <Music className="h-4 w-4 animate-pulse text-green-500 shrink-0" />
-            <div className="flex flex-col min-w-0">
+            <div className="flex flex-col min-w-0 leading-tight">
                 <span
                     ref={listeningRef}
                     className={cn(
-                        "text-[10px] uppercase tracking-wider text-muted-foreground/80 overflow-hidden mb-0.5",
+                        "text-[9px] uppercase tracking-wider text-muted-foreground/80 overflow-hidden",
                         isStable
                             ? "h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 group-hover:mb-0.5 transition-all duration-300 ease-in-out block"
-                            : "block"
+                            : "block mb-0.5"
                     )}
                     style={!isStable ? { opacity: 0 } : undefined}
                 >
                     Listening to
                 </span>
-                <Link
-                    href={data.songUrl || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium hover:text-primary hover:underline transition-colors truncate"
-                >
-                    {data.title}
-                </Link>
-                <span className="text-muted-foreground/60 truncate text-xs">by {data.artist}</span>
+                <div className="flex flex-col">
+                    <Link
+                        href={data.songUrl || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium hover:text-primary hover:underline transition-colors truncate text-xs"
+                    >
+                        {data.title}
+                    </Link>
+                    <span className="text-muted-foreground/60 truncate text-[10px] sm:text-xs">by {data.artist}</span>
+                </div>
             </div>
         </div>
     );
