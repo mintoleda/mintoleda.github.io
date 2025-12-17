@@ -13,6 +13,8 @@ export default function ProjectCard({ title, description, href, imageSrc }: Proj
     return (
         <Link
             href={href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group block overflow-hidden rounded-none border border-border bg-card transition-all hover:border-primary/50"
         >
             <div className="relative aspect-video w-full overflow-hidden bg-muted">

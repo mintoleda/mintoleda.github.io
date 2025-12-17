@@ -34,18 +34,19 @@ export default function ProjectsPage() {
                     </div>
 
                     <div className="space-y-8">
-                        <h3 className="text-3xl font-bold font-serif text-primary">Software Engineering</h3>
+                        {/* <h3 className="text-3xl font-bold font-serif text-primary">Software Engineering</h3> */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <ProjectCard
                                 title="InboxOrganizer"
                                 description="Label emails through Gmail with AI"
                                 href="https://github.com/mintoleda/InboxOrganizer"
-                                imageSrc="/resources/inboxorganizer-thumbnail.png"
+                                imageSrc="/resources/io-thumbnail.png"
                             />
                             <ProjectCard
                                 title="RESTful-Spotify-API"
                                 description="A RESTful API for Spotify integration"
                                 href="https://github.com/mintoleda/RESTful-Spotify-API"
+                                imageSrc="/resources/carbon.png"
                             />
                             <ProjectCard
                                 title="WeatherApp"

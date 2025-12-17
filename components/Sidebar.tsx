@@ -49,7 +49,6 @@ export default function Sidebar() {
             </div>
 
             <div className="space-y-4">
-                {/* Using the existing Spotify component but styled to fit sidebar if needed */}
                 <div className="text-xs">
                     <SpotifyNowPlaying />
                 </div>
