@@ -5,7 +5,7 @@ import anime from "animejs";
 import Sidebar from "@/components/Sidebar";
 import ParticleImage from "@/components/ParticleImage";
 import FloatingHeader from "@/components/FloatingHeader";
-import { ArrowDown } from "lucide-react";
+import { AliveIndicator } from "@/components/AliveIndicator";
 
 export default function Home() {
   const homeRef = useRef(null);
@@ -23,7 +23,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
+    <div className="h-screen overflow-hidden bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
       <Sidebar />
 
 
@@ -32,11 +32,11 @@ export default function Home() {
       </div>
 
 
-      <main className="md:ml-64 min-h-screen relative">
-        <div className="max-w-4xl mx-auto px-6 py-12 md:py-24 space-y-24">
+      <main className="md:ml-64 h-full relative">
+        <div className="max-w-4xl mx-auto px-6 h-full flex flex-col justify-center relative">
 
 
-          <section id="home" ref={homeRef} className="min-h-[80vh] flex flex-col justify-center relative border-b border-border pb-12">
+          <section id="home" ref={homeRef} className="flex flex-col justify-center relative pb-12">
             <div className="absolute inset-0 z-0 overflow-hidden mix-blend-overlay opacity-20">
               <ParticleImage />
             </div>
@@ -55,9 +55,8 @@ export default function Home() {
               </blockquote>
             </div>
 
-            <div className="absolute bottom-12 left-0 animate-bounce text-muted-foreground">
-              <ArrowDown className="w-6 h-6" />
-
+            <div className="absolute -bottom-24 left-0 text-muted-foreground">
+              <AliveIndicator />
             </div>
           </section>
 
