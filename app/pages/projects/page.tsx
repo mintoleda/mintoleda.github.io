@@ -27,7 +27,7 @@ export default function ProjectsPage() {
             </div>
 
             <main className="md:ml-64 min-h-screen relative p-8 md:p-24">
-                <div ref={containerRef} className="max-w-4xl mx-auto space-y-12">
+                <div ref={containerRef} className="max-w-4xl mx-auto space-y-12 opacity-0">
                     <div>
                         <h2 className="text-5xl md:text-7xl font-bold font-serif mb-8">Projects</h2>
                         <div className="h-px w-full bg-border" />
@@ -37,16 +37,16 @@ export default function ProjectsPage() {
                         {/* <h3 className="text-3xl font-bold font-serif text-primary">Software Engineering</h3> */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <ProjectCard
-                                title="InboxOrganizer"
-                                description="Label emails through Gmail with AI"
-                                href="https://github.com/mintoleda/InboxOrganizer"
-                                imageSrc="/resources/io-thumbnail.png"
-                            />
-                            <ProjectCard
                                 title="RESTful-Spotify-API"
                                 description="A RESTful API for Spotify integration"
                                 href="https://github.com/mintoleda/RESTful-Spotify-API"
                                 imageSrc="/resources/carbon.png"
+                            />
+                            <ProjectCard
+                                title="InboxOrganizer"
+                                description="Label emails through Gmail with AI"
+                                href="https://github.com/mintoleda/InboxOrganizer"
+                                imageSrc="/resources/io-thumbnail.png"
                             />
                             <ProjectCard
                                 title="WeatherApp"

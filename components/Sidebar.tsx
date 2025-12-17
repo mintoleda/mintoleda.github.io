@@ -11,7 +11,7 @@ const navItems = [
     { name: "projects", href: "/pages/projects" },
     { name: "resume", href: "/resources/resume.pdf" },
     { name: "now", href: "#now" }, // Kept as anchors if they exist or logic handles them? User didn't specify moving these.
-    { name: "contact", href: "#contact" },
+    { name: "contact", href: "/pages/contact" },
 ];
 
 export default function Sidebar() {

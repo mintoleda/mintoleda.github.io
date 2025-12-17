@@ -36,7 +36,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6 h-full flex flex-col justify-center relative">
 
 
-          <section id="home" ref={homeRef} className="flex flex-col justify-center relative pb-12">
+          <section id="home" ref={homeRef} className="flex flex-col justify-center relative pb-12 opacity-0">
             <div className="absolute inset-0 z-0 overflow-hidden mix-blend-overlay opacity-20">
               <ParticleImage />
             </div>

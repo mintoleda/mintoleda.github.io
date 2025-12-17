@@ -28,7 +28,7 @@ export default function AboutPage() {
             </div>
 
             <main className="md:ml-64 min-h-screen relative p-8 md:p-24">
-                <div ref={containerRef} className="max-w-4xl mx-auto space-y-8">
+                <div ref={containerRef} className="max-w-4xl mx-auto space-y-8 opacity-0">
                     <h2 className="text-5xl md:text-7xl font-bold font-serif">About</h2>
                     <div className="h-px w-full bg-border" />
 
@@ -51,7 +51,7 @@ export default function AboutPage() {
                         <div className="mt-8 pt-8 border-t border-white/10">
                             <h3 className="text-2xl font-bold font-serif mb-4">Skills</h3>
                             <div className="flex flex-wrap gap-2">
-                                {["React", "Next.js", "Tailwind CSS", "TypeScript", "Python", "Physics Simulation", "Data Analysis", "Git", "Anime.js"].map((skill) => (
+                                {["Java", "Python", "React", "Next.js", "Google Cloud Platform", "Tailwind CSS", "JavaScript", "TypeScript", "Git"].map((skill) => (
                                     <span key={skill} className="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-sm font-medium">
                                         {skill}
                                     </span>
