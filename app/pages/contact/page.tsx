@@ -57,7 +57,7 @@ export default function ContactPage() {
                     <div className="grid gap-8 md:grid-cols-2">
                         <div className="space-y-6">
                             <p className="text-xl md:text-2xl text-muted-foreground font-serif leading-relaxed">
-                                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+                                Feel free to reach out!
                             </p>
 
                             <div className="pt-8">
