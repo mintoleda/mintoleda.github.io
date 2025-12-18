@@ -67,7 +67,7 @@ export default function AboutPage() {
                         <div className="mt-8 pt-8 border-t border-white/10">
                             <h3 className="text-2xl font-bold font-serif mb-4">Skills</h3>
                             <div className="flex flex-wrap gap-2">
-                                {["Java", "Python", "React", "Next.js", "Google Cloud Platform", "Tailwind CSS", "JavaScript", "TypeScript", "Git"].map((skill) => (
+                                {["Java", "Python", "React", "Spring Boot", "Next.js", "REST APIs","Google Cloud Platform", "Tailwind CSS", "JavaScript", "TypeScript", "Git"].map((skill) => (
                                     <span key={skill} className="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-sm font-medium">
                                         {skill}
                                     </span>
