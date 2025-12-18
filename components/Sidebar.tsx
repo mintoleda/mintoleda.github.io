@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation"; // Although for single page anchor links this might be less relevant, sticking to standard.
 import { cn } from "@/lib/utils";
@@ -16,6 +17,35 @@ const navItems = [
 
 export default function Sidebar() {
     const pathname = usePathname();
+    const [activeSection, setActiveSection] = useState<string>("home");
+
+    useEffect(() => {
+        if (pathname !== "/") return;
+
+        const observerOptions = {
+            root: null,
+            rootMargin: "-20% 0px -70% 0px", // Trigger when section is in upper part of screen
+            threshold: 0,
+        };
+
+        const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+        const sections = ["home", "about"];
+        sections.forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) observer.observe(el);
+        });
+
+        return () => observer.disconnect();
+    }, [pathname]);
 
     return (
         <aside className="fixed left-0 top-0 h-screen w-64 p-8 flex flex-col justify-between hidden md:flex z-50">
@@ -26,7 +56,16 @@ export default function Sidebar() {
                 <nav className="flex flex-col space-y-4">
                     {navItems.map((item) => {
                         const isResume = item.name === "resume";
-                        const isActive = pathname === item.href;
+                        let isActive = pathname === item.href;
+
+                        // Strict scroll spy logic for Home page to prevent double highlights
+                        if (pathname === "/") {
+                            if (item.name === "home") {
+                                isActive = activeSection === "home";
+                            } else if (item.name === "about") {
+                                isActive = activeSection === "about";
+                            }
+                        }
 
                         return (
                             <Link
