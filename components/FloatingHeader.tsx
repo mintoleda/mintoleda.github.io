@@ -26,10 +26,28 @@ export default function FloatingHeader() {
 
             {/* Navigation Links */}
             <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 w-full max-w-sm">
-                <Link href="/" className="text-lg font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
+                <Link
+                    href="/"
+                    className="text-lg font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4"
+                    onClick={(e) => {
+                        if (pathname === "/") {
+                            e.preventDefault();
+                            window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
+                    }}
+                >
                     home
                 </Link>
-                <Link href="/pages/about" className="text-lg font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
+                <Link
+                    href="/#about"
+                    className="text-lg font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4"
+                    onClick={(e) => {
+                        if (pathname === "/") {
+                            e.preventDefault();
+                            document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                        }
+                    }}
+                >
                     about
                 </Link>
                 <Link href="/pages/projects" className="text-lg font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">

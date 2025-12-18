@@ -7,7 +7,7 @@ import SpotifyNowPlaying from "./SpotifyNowPlaying";
 
 const navItems = [
     { name: "home", href: "/" }, // Changed to '/'
-    { name: "about", href: "/pages/about" },
+    { name: "about", href: "/#about" },
     { name: "projects", href: "/pages/projects" },
     { name: "resume", href: "/resources/resume.pdf" },
     { name: "now", href: "/pages/now" },
@@ -35,11 +35,22 @@ export default function Sidebar() {
                                 target={isResume ? "_blank" : undefined}
                                 rel={isResume ? "noopener noreferrer" : undefined}
                                 className={cn(
-                                    "text-lg transition-colors font-serif",
+                                    "text-lg transition-colors font-serif capitalize",
                                     isActive
                                         ? "text-primary font-medium"
                                         : "text-muted-foreground hover:text-primary"
                                 )}
+                                onClick={(e) => {
+                                    if (pathname === "/") {
+                                        if (item.name === "home") {
+                                            e.preventDefault();
+                                            window.scrollTo({ top: 0, behavior: "smooth" });
+                                        } else if (item.name === "about") {
+                                            e.preventDefault();
+                                            document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                                        }
+                                    }
+                                }}
                             >
                                 {item.name}
                             </Link>
