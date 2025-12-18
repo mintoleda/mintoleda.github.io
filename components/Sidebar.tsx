@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Although for single page anchor links this might be less relevant, sticking to standard.
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import SpotifyNowPlaying from "./SpotifyNowPlaying";
 
 const navItems = [
-    { name: "home", href: "/" }, // Changed to '/'
+    { name: "home", href: "/" },
     { name: "about", href: "/#about" },
     { name: "projects", href: "/pages/projects" },
     { name: "resume", href: "/resources/resume.pdf" },
@@ -58,7 +58,6 @@ export default function Sidebar() {
                         const isResume = item.name === "resume";
                         let isActive = pathname === item.href;
 
-                        // Strict scroll spy logic for Home page to prevent double highlights
                         if (pathname === "/") {
                             if (item.name === "home") {
                                 isActive = activeSection === "home";

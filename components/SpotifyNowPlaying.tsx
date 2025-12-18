@@ -74,10 +74,8 @@ export default function SpotifyNowPlaying() {
         }
     }, [data?.isPlaying, isStable]);
 
-    // Separate cleanup to avoid race conditions with React's render cycle
     useEffect(() => {
         if (isStable && listeningRef.current) {
-            // Give React a frame to apply the classes before removing anime.js styles
             const timer = setTimeout(() => {
                 if (listeningRef.current) {
                     listeningRef.current.removeAttribute('style');

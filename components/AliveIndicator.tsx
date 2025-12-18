@@ -8,7 +8,6 @@ export function AliveIndicator() {
     useEffect(() => {
         if (!indicatorRef.current) return;
 
-        // Breathing (scale) animation
         anime({
             targets: indicatorRef.current,
             scale: [0.8, 1.1],
@@ -19,7 +18,6 @@ export function AliveIndicator() {
             loop: true,
         });
 
-        // Rotation animation
         anime({
             targets: indicatorRef.current,
             rotate: 360,

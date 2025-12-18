@@ -34,7 +34,6 @@ export default function ProjectsPage() {
                     </div>
 
                     <div className="space-y-8">
-                        {/* <h3 className="text-3xl font-bold font-serif text-primary">Software Engineering</h3> */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <ProjectCard
                                 title="RESTful-Spotify-API"
@@ -60,7 +59,7 @@ export default function ProjectsPage() {
                                 title="Portfolio"
                                 description="This website! Built with Next.js & Tailwind"
                                 href="https://github.com/mintoleda/mintoleda.github.io"
-                                tags={["React","Next.js", "Tailwind"]}
+                                tags={["React", "Next.js", "Tailwind"]}
                             />
                         </div>
                     </div>

@@ -35,7 +35,6 @@ export default function ServerStatus() {
 
         let delta = angle - lastAngleRef.current;
 
-        // Handle wrapping around 180/-180 degrees
         if (delta > 180) delta -= 360;
         if (delta < -180) delta += 360;
 
