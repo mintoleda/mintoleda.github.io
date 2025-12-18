@@ -14,19 +14,16 @@ interface SpotifyData {
     songUrl?: string;
 }
 
-import { cn } from "@/lib/utils"; // Import cn
-
-// ... existing interfaces
+import { cn } from "@/lib/utils";
 
 export default function SpotifyNowPlaying() {
     const [data, setData] = useState<SpotifyData | null>(null);
     const [loading, setLoading] = useState(true);
-    const [isStable, setIsStable] = useState(false); // Add state
+    const [isStable, setIsStable] = useState(false);
     const listeningRef = useRef<HTMLSpanElement | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            // ... existing fetch logic
             try {
                 const response = await fetch(
                     `${process.env.NEXT_PUBLIC_SPOTIFY_API_URL || "https://rest-ful-spotify-api.vercel.app"}/api/now-playing`
@@ -47,15 +44,6 @@ export default function SpotifyNowPlaying() {
     }, []);
 
     useEffect(() => {
-        // Reset stable state if song changes? Maybe or maybe not. 
-        // User wants "when the page is loaded". 
-        // If song changes, maybe re-trigger? 
-        // Let's stick to initial load behavior mainly, but if data changes it might re-render.
-        // If we want it to happen ONCE per session or ONCE per song, we need to track it.
-        // For now, let's trigger it whenever 'data.isPlaying' becomes true and we haven't stabilized yet?
-        // Or re-trigger on every song change? "appear when page is loaded".
-        // Let's assume on mount/detection of playing.
-
         if (data?.isPlaying && listeningRef.current && !isStable) {
             const tl = anime.timeline({
                 easing: 'easeOutQuad',
@@ -77,9 +65,6 @@ export default function SpotifyNowPlaying() {
                     delay: 2000,
                     complete: () => {
                         setIsStable(true);
-                        if (listeningRef.current) {
-                            listeningRef.current.removeAttribute('style');
-                        }
                     }
                 });
 
@@ -88,6 +73,19 @@ export default function SpotifyNowPlaying() {
             };
         }
     }, [data?.isPlaying, isStable]);
+
+    // Separate cleanup to avoid race conditions with React's render cycle
+    useEffect(() => {
+        if (isStable && listeningRef.current) {
+            // Give React a frame to apply the classes before removing anime.js styles
+            const timer = setTimeout(() => {
+                if (listeningRef.current) {
+                    listeningRef.current.removeAttribute('style');
+                }
+            }, 0);
+            return () => clearTimeout(timer);
+        }
+    }, [isStable]);
 
     if (loading) {
         return (
@@ -114,10 +112,10 @@ export default function SpotifyNowPlaying() {
                 <span
                     ref={listeningRef}
                     className={cn(
-                        "text-[9px] uppercase tracking-wider text-muted-foreground/80 overflow-hidden",
+                        "text-[9px] uppercase tracking-wider text-muted-foreground/80 overflow-hidden block",
                         isStable
-                            ? "h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 group-hover:mb-0.5 transition-all duration-300 ease-in-out block"
-                            : "block mb-0.5"
+                            ? "h-0 opacity-0 pointer-events-none group-hover:h-[14px] group-hover:opacity-100 group-hover:mb-0.5 group-hover:pointer-events-auto transition-all duration-300 ease-in-out"
+                            : "mb-0.5"
                     )}
                     style={!isStable ? { opacity: 0 } : undefined}
                 >

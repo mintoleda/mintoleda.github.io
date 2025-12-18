@@ -41,22 +41,26 @@ export default function ProjectsPage() {
                                 description="A RESTful API for Spotify integration"
                                 href="https://github.com/mintoleda/RESTful-Spotify-API"
                                 imageSrc="/resources/carbon.png"
+                                tags={["Java", "Spring Boot", "REST API"]}
                             />
                             <ProjectCard
                                 title="InboxOrganizer"
                                 description="Label emails through Gmail with AI"
                                 href="https://github.com/mintoleda/InboxOrganizer"
                                 imageSrc="/resources/io-thumbnail.png"
+                                tags={["Python", "Google Cloud Project", "LLMs"]}
                             />
                             <ProjectCard
                                 title="WeatherApp"
                                 description="Online weather app"
                                 href="https://github.com/mintoleda/WeatherApp"
+                                tags={["React", "APIs"]}
                             />
                             <ProjectCard
                                 title="Portfolio"
                                 description="This website! Built with Next.js & Tailwind"
                                 href="https://github.com/mintoleda/mintoleda.github.io"
+                                tags={["React","Next.js", "Tailwind"]}
                             />
                         </div>
                     </div>
