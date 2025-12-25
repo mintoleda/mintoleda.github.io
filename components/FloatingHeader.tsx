@@ -25,10 +25,10 @@ export default function FloatingHeader() {
             )}
 
             {/* Navigation Links */}
-            <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 w-full max-w-sm">
+            <nav className="flex flex-wrap justify-center gap-x-3 gap-y-2 w-full max-w-sm px-2">
                 <Link
                     href="/"
-                    className="text-lg font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4"
+                    className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4"
                     onClick={(e) => {
                         if (pathname === "/") {
                             e.preventDefault();
@@ -40,7 +40,7 @@ export default function FloatingHeader() {
                 </Link>
                 <Link
                     href="/#about"
-                    className="text-lg font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4"
+                    className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4"
                     onClick={(e) => {
                         if (pathname === "/") {
                             e.preventDefault();
@@ -50,16 +50,16 @@ export default function FloatingHeader() {
                 >
                     about
                 </Link>
-                <Link href="/pages/projects" className="text-lg font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
+                <Link href="/pages/projects" className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
                     projects
                 </Link>
-                <a href="/resources/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-lg font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
+                <a href="/resources/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
                     CV
                 </a>
-                <Link href="/pages/now" className="text-lg font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
+                <Link href="/pages/now" className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
                     now
                 </Link>
-                <Link href="/pages/contact" className="text-lg font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
+                <Link href="/pages/contact" className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
                     contact
                 </Link>
             </nav>

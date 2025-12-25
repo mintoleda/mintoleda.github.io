@@ -66,12 +66,12 @@ export default function Home() {
               </blockquote>
             </div>
 
-            <div className="absolute bottom-12 left-0 text-muted-foreground flex items-center gap-4">
+            <div className="md:absolute md:bottom-12 md:left-0 text-muted-foreground flex items-center gap-4 mt-auto pt-16 md:pt-0">
               <AliveIndicator />
             </div>
 
             <div
-              className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer animate-bounce text-muted-foreground hover:text-primary transition-colors z-20"
+              className="md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2 cursor-pointer animate-bounce text-muted-foreground hover:text-primary transition-colors z-20 flex justify-center mt-8 md:mt-0"
               onClick={scrollToAbout}
             >
               <ArrowDown className="h-8 w-8" />

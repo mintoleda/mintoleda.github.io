@@ -14,16 +14,19 @@ interface SpotifyData {
     songUrl?: string;
 }
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"; // Import cn
+
+// ... existing interfaces
 
 export default function SpotifyNowPlaying() {
     const [data, setData] = useState<SpotifyData | null>(null);
     const [loading, setLoading] = useState(true);
-    const [isStable, setIsStable] = useState(false);
+    const [isStable, setIsStable] = useState(false); // Add state
     const listeningRef = useRef<HTMLSpanElement | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
+            // ... existing fetch logic
             try {
                 const response = await fetch(
                     `${process.env.NEXT_PUBLIC_SPOTIFY_API_URL || "https://rest-ful-spotify-api.vercel.app"}/api/now-playing`
@@ -44,6 +47,15 @@ export default function SpotifyNowPlaying() {
     }, []);
 
     useEffect(() => {
+        // Reset stable state if song changes? Maybe or maybe not. 
+        // User wants "when the page is loaded". 
+        // If song changes, maybe re-trigger? 
+        // Let's stick to initial load behavior mainly, but if data changes it might re-render.
+        // If we want it to happen ONCE per session or ONCE per song, we need to track it.
+        // For now, let's trigger it whenever 'data.isPlaying' becomes true and we haven't stabilized yet?
+        // Or re-trigger on every song change? "appear when page is loaded".
+        // Let's assume on mount/detection of playing.
+
         if (data?.isPlaying && listeningRef.current && !isStable) {
             const tl = anime.timeline({
                 easing: 'easeOutQuad',
@@ -65,6 +77,9 @@ export default function SpotifyNowPlaying() {
                     delay: 2000,
                     complete: () => {
                         setIsStable(true);
+                        if (listeningRef.current) {
+                            listeningRef.current.removeAttribute('style');
+                        }
                     }
                 });
 
@@ -73,17 +88,6 @@ export default function SpotifyNowPlaying() {
             };
         }
     }, [data?.isPlaying, isStable]);
-
-    useEffect(() => {
-        if (isStable && listeningRef.current) {
-            const timer = setTimeout(() => {
-                if (listeningRef.current) {
-                    listeningRef.current.removeAttribute('style');
-                }
-            }, 0);
-            return () => clearTimeout(timer);
-        }
-    }, [isStable]);
 
     if (loading) {
         return (
@@ -104,32 +108,30 @@ export default function SpotifyNowPlaying() {
     }
 
     return (
-        <div className="group flex items-center gap-2 text-sm text-muted-foreground animate-in fade-in duration-500">
+        <div className="group flex items-center gap-3 text-sm text-muted-foreground animate-in fade-in duration-500">
             <Music className="h-4 w-4 animate-pulse text-green-500 shrink-0" />
-            <div className="flex flex-col min-w-0 leading-tight">
+            <div className="flex flex-col min-w-0">
                 <span
                     ref={listeningRef}
                     className={cn(
-                        "text-[9px] uppercase tracking-wider text-muted-foreground/80 overflow-hidden block",
+                        "text-[10px] uppercase tracking-wider text-muted-foreground/80 overflow-hidden mb-0.5",
                         isStable
-                            ? "h-0 opacity-0 pointer-events-none group-hover:h-[14px] group-hover:opacity-100 group-hover:mb-0.5 group-hover:pointer-events-auto transition-all duration-300 ease-in-out"
-                            : "mb-0.5"
+                            ? "h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 group-hover:mb-0.5 transition-all duration-300 ease-in-out block"
+                            : "block"
                     )}
                     style={!isStable ? { opacity: 0 } : undefined}
                 >
                     Listening to
                 </span>
-                <div className="flex flex-col">
-                    <Link
-                        href={data.songUrl || "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-medium hover:text-primary hover:underline transition-colors truncate text-xs"
-                    >
-                        {data.title}
-                    </Link>
-                    <span className="text-muted-foreground/60 truncate text-[10px] sm:text-xs">by {data.artist}</span>
-                </div>
+                <Link
+                    href={data.songUrl || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium hover:text-primary hover:underline transition-colors truncate"
+                >
+                    {data.title}
+                </Link>
+                <span className="text-muted-foreground/60 truncate text-xs">by {data.artist}</span>
             </div>
         </div>
     );
