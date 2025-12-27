@@ -7,7 +7,6 @@ import { ArrowDown } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import ParticleImage from "@/components/ParticleImage";
 import FloatingHeader from "@/components/FloatingHeader";
-import { AliveIndicator } from "@/components/AliveIndicator";
 import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
 
 export default function Home() {
@@ -66,9 +65,6 @@ export default function Home() {
               </blockquote>
             </div>
 
-            <div className="md:absolute md:bottom-12 md:left-0 text-muted-foreground flex items-center gap-4 mt-auto pt-16 md:pt-0">
-              <AliveIndicator />
-            </div>
 
             <div
               className="md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2 cursor-pointer animate-bounce text-muted-foreground hover:text-primary transition-colors z-20 flex justify-center mt-8 md:mt-0"
