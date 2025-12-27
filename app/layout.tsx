@@ -20,6 +20,9 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Adetola Adetunji",
   description: "Portfolio",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 import { ThemeProvider } from "@/components/theme-provider";
