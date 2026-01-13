@@ -20,7 +20,16 @@ export default function ParticleImage() {
         setSize();
         window.addEventListener("resize", setSize);
 
-        const particles: any[] = [];
+        interface Particle {
+            x: number;
+            y: number;
+            radius: number;
+            alpha: number;
+            vx: number;
+            vy: number;
+        }
+
+        const particles: Particle[] = [];
         const numParticles = 800;
         for (let i = 0; i < numParticles; i++) {
             particles.push({

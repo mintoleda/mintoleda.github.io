@@ -47,28 +47,21 @@ export default function SpotifyNowPlaying() {
     }, []);
 
     useEffect(() => {
-        // Reset stable state if song changes? Maybe or maybe not. 
-        // User wants "when the page is loaded". 
-        // If song changes, maybe re-trigger? 
-        // Let's stick to initial load behavior mainly, but if data changes it might re-render.
-        // If we want it to happen ONCE per session or ONCE per song, we need to track it.
-        // For now, let's trigger it whenever 'data.isPlaying' becomes true and we haven't stabilized yet?
-        // Or re-trigger on every song change? "appear when page is loaded".
-        // Let's assume on mount/detection of playing.
+        const currentRef = listeningRef.current;
 
-        if (data?.isPlaying && listeningRef.current && !isStable) {
+        if (data?.isPlaying && currentRef && !isStable) {
             const tl = anime.timeline({
                 easing: 'easeOutQuad',
             });
 
             tl.add({
-                targets: listeningRef.current,
+                targets: currentRef,
                 translateY: [10, 0],
                 opacity: [0, 1],
                 duration: 600,
             })
                 .add({
-                    targets: listeningRef.current,
+                    targets: currentRef,
                     height: 0,
                     marginBottom: 0,
                     opacity: 0,
@@ -77,14 +70,12 @@ export default function SpotifyNowPlaying() {
                     delay: 2000,
                     complete: () => {
                         setIsStable(true);
-                        if (listeningRef.current) {
-                            listeningRef.current.removeAttribute('style');
-                        }
+                        currentRef.removeAttribute('style');
                     }
                 });
 
             return () => {
-                anime.remove(listeningRef.current);
+                anime.remove(currentRef);
             };
         }
     }, [data?.isPlaying, isStable]);

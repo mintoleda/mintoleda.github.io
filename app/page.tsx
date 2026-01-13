@@ -7,7 +7,6 @@ import { ArrowDown } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
 import ParticleImage from "@/components/ParticleImage";
 import FloatingHeader from "@/components/FloatingHeader";
-import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
 
 export default function Home() {
   const homeRef = useRef(null);
@@ -83,7 +82,7 @@ export default function Home() {
               <div className="border border-white/20 p-8 md:p-12 rounded-none bg-card/50 backdrop-blur-sm">
                 <ul className="space-y-4 list-disc list-inside text-lg md:text-xl text-muted-foreground marker:text-primary font-serif">
                   <li>
-                    I'm currently studying Computer Science at the University of Texas at Austin, with a minor in Statistics and Data Science, and a concentration in Machine Learning & AI.
+                    I&apos;m currently studying Computer Science at the University of Texas at Austin, with a minor in Statistics and Data Science, and a concentration in Machine Learning & AI.
                   </li>
                   <li>
                     My favorite color is{" "}
@@ -115,7 +114,7 @@ export default function Home() {
                 <div className="mt-8 pt-8 border-t border-white/10">
                   <h3 className="text-2xl font-bold font-serif mb-4">Skills</h3>
                   <div className="flex flex-wrap gap-2">
-                    {["Java", "Python", "React", "Spring Boot", "Next.js", "REST APIs", "Google Cloud Platform", "Tailwind CSS", "JavaScript", "TypeScript", "Git"].map((skill) => (
+                    {["Java", "Python", "HTML/CSS", "JavaScript", "TypeScript", "React", "Spring Boot", "RESTful APIs", "Docker", "PostgreSQL", "Apache Kafka", "Kafka Streams", "Google Cloud Platform", "Git", "Ollama", "Jest"].map((skill) => (
                       <span key={skill} className="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-sm font-medium">
                         {skill}
                       </span>
