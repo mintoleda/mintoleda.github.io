@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import anime from "animejs";
 import ProjectCard from "@/components/ProjectCard";
-import Sidebar from "@/components/Sidebar"; // Including Sidebar here as per current pattern
-import FloatingHeader from "@/components/FloatingHeader"; // For mobile
+import Sidebar from "@/components/Sidebar";
+import FloatingHeader from "@/components/FloatingHeader";
 
 export default function ProjectsPage() {
     const containerRef = useRef(null);
@@ -35,31 +35,37 @@ export default function ProjectsPage() {
 
                     <div className="space-y-8">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                             <ProjectCard
+                                title="Morning Commute"
+                                description="Distributed microservices ecosystem for ride-hailing analytics using Kafka streams."
+                                href="https://github.com/mintoleda/MorningCommute"
+                                tags={["Java", "Kafka", "Spring Boot", "Docker", "PostgreSQL"]}
+                            />
                             <ProjectCard
-                                title="RESTful-Spotify-API"
-                                description="A RESTful API for Spotify integration"
+                                title="RESTful Spotify API"
+                                description="Backend service for real-time Spotify data integration with sub-second latency."
                                 href="https://github.com/mintoleda/RESTful-Spotify-API"
                                 imageSrc="/resources/carbon.png"
-                                tags={["Java", "Spring Boot", "REST API"]}
+                                tags={["Java", "Spring Boot", "Jest", "REST API"]}
                             />
                             <ProjectCard
                                 title="InboxOrganizer"
-                                description="Label emails through Gmail with AI"
+                                description="AI-powered Gmail organizer using Llama 3.1 8B for local inference and categorization."
                                 href="https://github.com/mintoleda/InboxOrganizer"
                                 imageSrc="/resources/io-thumbnail.png"
-                                tags={["Python", "Google Cloud Project", "LLMs"]}
-                            />
-                            <ProjectCard
-                                title="WeatherApp"
-                                description="Online weather app"
-                                href="https://github.com/mintoleda/WeatherApp"
-                                tags={["React", "APIs"]}
+                                tags={["Python", "GCP", "Docker", "Ollama"]}
                             />
                             <ProjectCard
                                 title="Portfolio"
-                                description="This website! Built with Next.js & Tailwind"
+                                description="This website! Built with Next.js, Tailwind CSS, and Framer Motion."
                                 href="https://github.com/mintoleda/mintoleda.github.io"
                                 tags={["React", "Next.js", "Tailwind"]}
+                            />
+                            <ProjectCard
+                                title="WeatherApp"
+                                description="Interactive weather application with real-time API integration."
+                                href="https://github.com/mintoleda/WeatherApp"
+                                tags={["React", "APIs"]}
                             />
                         </div>
                     </div>

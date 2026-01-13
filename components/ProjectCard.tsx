@@ -9,7 +9,7 @@ interface ProjectCardProps {
     tags?: string[];
 }
 
-export default function ProjectCard({ title, description, href, imageSrc }: ProjectCardProps) {
+export default function ProjectCard({ title, description, href, imageSrc, tags }: ProjectCardProps) {
     return (
         <Link
             href={href}
@@ -33,7 +33,16 @@ export default function ProjectCard({ title, description, href, imageSrc }: Proj
             </div>
             <div className="p-4">
                 <h3 className="text-lg font-bold font-serif mb-2 group-hover:text-primary transition-colors">{title}</h3>
-                <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{description}</p>
+                {tags && tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                        {tags.map((tag) => (
+                            <span key={tag} className="text-xs px-2 py-1 bg-secondary text-secondary-foreground rounded-md">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
+                )}
             </div>
         </Link>
     );
