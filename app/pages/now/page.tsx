@@ -39,7 +39,7 @@ export default function NowPage() {
                         </section>
 
                         <p className="text-sm text-muted-foreground italic font-serif pt-8 border-t border-white/10">
-                            Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                            Last updated: December 2025
                         </p>
 
                         <div className="-mt-3">
