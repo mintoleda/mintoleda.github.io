@@ -15,10 +15,9 @@ export default function ContactPage() {
                 {/* Title Cell */}
                 <BentoCell colSpan={4} rowSpan={1} className="p-8 md:p-10 flex items-center justify-between bg-primary/5">
                     <div className="space-y-2">
-                        <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight">
+                        <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight lowercase">
                             Contact
                         </h2>
-                        <p className="text-muted-foreground font-body">Let's connect and build something.</p>
                     </div>
                     <MessageSquare size={48} className="text-primary/20 hidden md:block" />
                 </BentoCell>

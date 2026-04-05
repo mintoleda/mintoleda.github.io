@@ -21,9 +21,9 @@ export const projects = [
     },
     {
         title: "Portfolio",
-        description: "This website! Built with Next.js, Tailwind CSS, and Framer Motion.",
+        description: "This website! Built with Next.js, Tailwind CSS, and GSAP.",
         href: "https://github.com/mintoleda/mintoleda.github.io",
-        tags: ["React", "Next.js", "Tailwind"]
+        tags: ["React", "Next.js", "Tailwind", "GSAP"]
     },
     {
         title: "WeatherApp",

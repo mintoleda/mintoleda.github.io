@@ -9,22 +9,24 @@ interface BentoCellProps {
   className?: string;
   colSpan?: 1 | 2 | 3 | 4;
   rowSpan?: 1 | 2 | 3;
+  disableHoverEffect?: boolean;
 }
 
 export function BentoCell({ 
   children, 
   className, 
   colSpan = 1, 
-  rowSpan = 1 
+  rowSpan = 1,
+  disableHoverEffect = false
 }: BentoCellProps) {
   const cellRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (cellRef.current) {
+    if (cellRef.current && !disableHoverEffect) {
       const cleanup = applyLiquidMagneticHover(cellRef.current);
       return cleanup;
     }
-  }, []);
+  }, [disableHoverEffect]);
 
   return (
     <div
