@@ -1,170 +1,238 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-import anime from "animejs";
-import { cn } from "@/lib/utils";
-import { ArrowDown } from "lucide-react";
-import Sidebar from "@/components/Sidebar";
-import ParticleImage from "@/components/ParticleImage";
-import FloatingHeader from "@/components/FloatingHeader";
+import { BentoGrid } from "@/components/BentoGrid";
+import { BentoCell } from "@/components/BentoCell";
+import { LiveClock } from "@/components/LiveClock";
+import { LocationCell } from "@/components/LocationCell";
+import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
+import FavoriteAlbums from "@/components/FavoriteAlbums";
+import { skills } from "@/data/skills";
+import Link from "next/link";
+import {
+  ArrowUpRight,
+  BookOpen,
+  Code,
+  Disc,
+  Gamepad2,
+  GraduationCap,
+  Monitor,
+  Music,
+  Terminal,
+} from "lucide-react";
 
 export default function Home() {
-  const homeRef = useRef(null);
-  const aboutRef = useRef<HTMLDivElement>(null);
-  const [isVerseExpanded, setIsVerseExpanded] = useState(false);
-
-
-  useEffect(() => {
-
-    anime({
-      targets: [homeRef.current],
-      translateY: [20, 0],
-      opacity: [0, 1],
-      easing: "easeOutQuad",
-      duration: 800,
-    });
-  }, []);
-
-  const scrollToAbout = () => {
-    aboutRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
-      <Sidebar />
-
-
-      <div className="md:hidden">
-        <FloatingHeader />
-      </div>
-
-
-
-
-      <main className="md:ml-64 min-h-screen relative">
-        <div className="max-w-4xl mx-auto px-6 py-4 md:py-0 min-h-[calc(100vh+60px)] md:min-h-0 flex flex-col justify-start md:justify-center relative">
-
-
-          <section id="home" ref={homeRef} className="flex flex-col md:justify-center justify-start pt-12 md:pt-0 relative pb-12 opacity-0 md:min-h-screen">
-            <div className="absolute inset-0 z-0 overflow-hidden mix-blend-overlay opacity-20">
-              <ParticleImage />
-            </div>
-
-            <div className="relative z-10 space-y-6">
-              <h1 className="text-6xl md:text-8xl font-serif font-bold tracking-tight">
-                Adetola Adetunji
-              </h1>
-              <div className="h-px w-full bg-border max-w-md" />
-
-              <blockquote className="text-xl md:text-2xl text-muted-foreground italic font-serif max-w-2xl border-l-2 border-primary pl-6 py-2">
-                &quot;When will you consider the possibility that you are exactly who you want to be?&quot;
-                <footer className="text-sm text-muted-foreground mt-2 not-italic font-sans">
-                  — Charles Yu, Sorry, Please, Thank You: Stories
-                </footer>
-              </blockquote>
-            </div>
-
-
-            <div
-              className="md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2 cursor-pointer animate-bounce text-muted-foreground hover:text-primary transition-colors z-20 flex justify-center mt-8 md:mt-0"
-              onClick={scrollToAbout}
+    <div className="max-w-5xl mx-auto flex flex-col justify-center min-h-[calc(100vh-64px)] pb-24 md:pb-0">
+      <BentoGrid>
+        {/* Intro Cell - 2x2 */}
+        <BentoCell
+          colSpan={2}
+          rowSpan={2}
+          className="p-8 md:p-10 flex flex-col justify-between group overflow-hidden bg-gradient-to-br from-card to-card/50"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--color-primary)_0%,transparent_60%)] opacity-5 group-hover:opacity-10 transition-opacity duration-700" />
+          <div className="space-y-4 z-10">
+            <h1 className="text-5xl md:text-7xl font-heading font-bold tracking-tighter leading-[1.1]">
+              Adetola
+              <br />
+              <span className="text-muted-foreground">Adetunji</span>
+            </h1>
+            <p className="text-base md:text-lg font-body text-muted-foreground max-w-md leading-relaxed">
+              software engineer studying cs & data science at ut austin. i play
+              saxophone and experiment with my{" "}
+              <a
+                href="https://github.com/mintoleda/dotfiles"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline underline-offset-4 decoration-primary/50 transition-colors"
+              >
+                hyprland config
+              </a>
+              .
+            </p>
+          </div>
+          <div className="mt-12 z-10">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-primary-foreground font-label text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors"
             >
-              <ArrowDown className="h-8 w-8" />
+              Get in touch
+              <ArrowUpRight size={16} />
+            </Link>
+          </div>
+        </BentoCell>
+
+        {/* Quote Cell - 2x1 */}
+        <BentoCell
+          colSpan={2}
+          rowSpan={1}
+          className="p-6 md:p-8 flex flex-col justify-center bg-card/80"
+        >
+          <blockquote className="text-xl md:text-2xl text-foreground font-heading italic">
+            &quot;When will you consider the possibility that you are exactly
+            who you want to be?&quot;
+          </blockquote>
+          <footer className="text-sm font-label text-muted-foreground mt-4 uppercase tracking-widest">
+            — Charles Yu
+          </footer>
+        </BentoCell>
+
+        {/* Education Cell - 1x1 */}
+        <BentoCell
+          colSpan={1}
+          rowSpan={1}
+          className="p-6 flex flex-col justify-between"
+        >
+          <div className="flex justify-between items-start text-muted-foreground">
+            <span className="text-xs font-label uppercase tracking-wider">
+              Education
+            </span>
+            <GraduationCap size={18} />
+          </div>
+          <div>
+            <div className="text-xl font-heading font-medium">
+              CS @ UT Austin
             </div>
-          </section>
-
-
-          <section id="about" ref={aboutRef} className="flex flex-col justify-center relative py-24 min-h-screen">
-            <div className="space-y-8">
-              <h2 className="text-5xl md:text-7xl font-bold font-serif">About</h2>
-              <div className="h-px w-full bg-border" />
-
-              <div className="border border-white/20 p-8 md:p-12 rounded-none bg-card/50 backdrop-blur-sm">
-                <ul className="space-y-4 list-disc list-inside text-lg md:text-xl text-muted-foreground marker:text-primary font-serif">
-                  <li>
-                    I&apos;m currently studying Computer Science at the University of Texas at Austin, with a minor in Statistics and Data Science, and a concentration in Machine Learning & AI.
-                  </li>
-                  <li>
-                    My favorite color is{" "}
-                    <span className="relative group inline-block cursor-help">
-                      <span className="text-primary font-bold">Green</span>
-                      <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-bold text-primary-foreground bg-primary rounded-md opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 group-active:translate-y-0 pointer-events-none whitespace-nowrap z-50">
-                        duh.
-                        <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary"></span>
-                      </span>
-                    </span>
-                    .
-                  </li>
-                  <li>
-                    I love <a href="https://stats.fm/mintoleda" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline underline-offset-4">listening to music</a> and{" "}
-                    <span className="relative group inline-block cursor-help">
-                      <span className="text-primary font-bold">playing instruments</span>
-                      <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs font-bold text-primary-foreground bg-primary rounded-md opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-200 transform translate-y-1 group-hover:translate-y-0 group-active:translate-y-0 pointer-events-none whitespace-nowrap z-50">
-                        saxophone and piano for 10+ years
-                        <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-primary"></span>
-                      </span>
-                    </span>.
-                  </li>
-                  <li>
-                    I enjoy playing chess and Tetris.
-                  </li>
-                </ul>
-
-
-                <div className="mt-8 pt-8 border-t border-white/10">
-                  <h3 className="text-2xl font-bold font-serif mb-4">Skills</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {["Java", "Python", "HTML/CSS", "JavaScript", "TypeScript", "React", "Spring Boot", "RESTful APIs", "Docker", "PostgreSQL", "Apache Kafka", "Kafka Streams", "Google Cloud Platform", "Git", "Ollama", "Jest"].map((skill) => (
-                      <span key={skill} className="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-sm font-medium">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-
-                <div
-                  className="mt-8 pt-8 border-t border-white/10 group w-fit cursor-pointer"
-                  onClick={() => setIsVerseExpanded(!isVerseExpanded)}
-                >
-                  <div className="cursor-help w-fit">
-                    <span className={cn(
-                      "text-sm font-sans text-primary/80 font-medium transition-colors duration-300",
-                      "group-hover:text-primary",
-                      isVerseExpanded && "text-primary"
-                    )}>
-                      — Isaiah 58:9-11
-                    </span>
-                  </div>
-                  <div className={cn(
-                    "transition-all duration-1000 ease-in-out overflow-hidden",
-                    "max-h-0 opacity-0 group-hover:max-h-[1000px] group-hover:opacity-100",
-                    isVerseExpanded && "max-h-[1000px] opacity-100"
-                  )}>
-                    <blockquote className="font-serif italic text-muted-foreground text-lg leading-relaxed pt-4">
-                      &quot;Then you shall call, and the Lord will answer;
-                      you shall cry, and he will say, ‘Here I am.’
-                      If you take away the yoke from your midst,
-                      the pointing of the finger, and speaking wickedness,
-                      if you pour yourself out for the hungry
-                      and satisfy the desire of the afflicted,
-                      then shall your light rise in the darkness
-                      and your gloom be as the noonday.
-                      And the Lord will guide you continually
-                      and satisfy your desire in scorched places
-                      and make your bones strong;
-                      and you shall be like a watered garden,
-                      like a spring of water,
-                      whose waters do not fail.&quot;
-                    </blockquote>
-                  </div>
-                </div>
-              </div>
+            <div className="text-sm font-body text-muted-foreground mt-1">
+              Minor in Stats & Data Science. ML & AI focus.
             </div>
-          </section>
+          </div>
+        </BentoCell>
 
-        </div>
-      </main>
+        {/* Location Cell - 1x1 */}
+        <BentoCell colSpan={1} rowSpan={1}>
+          <LocationCell />
+        </BentoCell>
+
+        {/* Skills Cell - 2x1 */}
+        <BentoCell
+          colSpan={2}
+          rowSpan={1}
+          className="p-6 md:p-8 flex flex-col justify-between"
+        >
+          <div className="flex justify-between items-start text-muted-foreground mb-4">
+            <span className="text-xs font-label uppercase tracking-wider">
+              Tech Stack
+            </span>
+            <Code size={18} />
+          </div>
+          <div className="flex flex-wrap gap-2 mt-auto">
+            {skills.slice(0, 10).map((skill) => (
+              <span
+                key={skill}
+                className="px-3 py-1.5 bg-secondary text-secondary-foreground font-label text-xs uppercase tracking-wider rounded-md border border-border/50"
+              >
+                {skill}
+              </span>
+            ))}
+            <Link
+              href="/projects"
+              className="px-3 py-1.5 text-primary font-label text-xs uppercase tracking-wider rounded-md hover:bg-primary/10 transition-colors flex items-center gap-1"
+            >
+              + More <ArrowUpRight size={12} />
+            </Link>
+          </div>
+        </BentoCell>
+
+        {/* Music/Hobbies Cells - 1x1 each */}
+        <BentoCell
+          colSpan={1}
+          rowSpan={1}
+          className="p-6 flex flex-col justify-between"
+        >
+          <div className="flex justify-between items-start text-muted-foreground">
+            <span className="text-xs font-label uppercase tracking-wider">
+              Music
+            </span>
+            <Music size={18} />
+          </div>
+          <div className="mt-auto">
+            <div className="text-lg font-heading font-medium">
+              Saxophone & Piano
+            </div>
+            <div className="text-sm font-body text-muted-foreground mt-1">
+              Playing for 10+ years.
+            </div>
+          </div>
+        </BentoCell>
+
+        <BentoCell
+          colSpan={1}
+          rowSpan={1}
+          className="p-6 flex flex-col justify-between"
+        >
+          <div className="flex justify-between items-start text-muted-foreground">
+            <span className="text-xs font-label uppercase tracking-wider">
+              Play
+            </span>
+            <Gamepad2 size={18} />
+          </div>
+          <div className="mt-auto">
+            <div className="text-lg font-heading font-medium">
+              Chess & Tetris
+            </div>
+            <div className="text-sm font-body text-muted-foreground mt-1">
+              Always up for a match.
+            </div>
+          </div>
+        </BentoCell>
+
+        <BentoCell colSpan={2} rowSpan={1}>
+          <LiveClock />
+        </BentoCell>
+
+        {/* Now Playing - 1x1 */}
+        <BentoCell
+          colSpan={1}
+          rowSpan={1}
+          className="p-6 flex flex-col justify-center bg-secondary/30"
+        >
+          <SpotifyNowPlaying />
+        </BentoCell>
+
+        {/* Currently Reading - 1x1 */}
+        <BentoCell
+          colSpan={1}
+          rowSpan={1}
+          className="p-6 flex flex-col justify-between"
+        >
+          <div className="flex justify-between items-start text-muted-foreground">
+            <span className="text-xs font-label uppercase tracking-wider">
+              Reading
+            </span>
+            <BookOpen size={18} />
+          </div>
+          <div className="mt-auto">
+            <div className="text-lg font-heading font-medium">Dune</div>
+            <div className="text-sm font-body text-muted-foreground mt-1">
+              by Frank Herbert
+            </div>
+          </div>
+        </BentoCell>
+
+        {/* Favorite Albums */}
+        <FavoriteAlbums />
+
+        {/* Uses Link - 2x1 */}
+        <BentoCell
+          colSpan={2}
+          rowSpan={1}
+          className="p-6 flex flex-col justify-center items-center text-center group"
+        >
+          <div className="space-y-2">
+            <div className="flex justify-center items-center gap-2 text-muted-foreground">
+              <Monitor size={18} />
+              <span className="text-xs font-label uppercase tracking-wider">
+                My Setup
+              </span>
+            </div>
+            <Link
+              href="/uses"
+              className="text-2xl font-heading font-medium text-primary group-hover:text-primary/80 transition-colors flex items-center justify-center gap-2"
+            >
+              View my uses <ArrowUpRight size={20} />
+            </Link>
+          </div>
+        </BentoCell>
+      </BentoGrid>
     </div>
   );
 }

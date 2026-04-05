@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
-
+import { navItems } from "@/data/nav";
 
 export default function FloatingHeader() {
     const pathname = usePathname();
@@ -26,42 +26,31 @@ export default function FloatingHeader() {
 
             {/* Navigation Links */}
             <nav className="flex flex-wrap justify-center gap-x-3 gap-y-2 w-full max-w-sm px-2">
-                <Link
-                    href="/"
-                    className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4"
-                    onClick={(e) => {
-                        if (pathname === "/") {
-                            e.preventDefault();
-                            window.scrollTo({ top: 0, behavior: "smooth" });
-                        }
-                    }}
-                >
-                    home
-                </Link>
-                <Link
-                    href="/#about"
-                    className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4"
-                    onClick={(e) => {
-                        if (pathname === "/") {
-                            e.preventDefault();
-                            document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-                        }
-                    }}
-                >
-                    about
-                </Link>
-                <Link href="/pages/projects" className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
-                    projects
-                </Link>
-                <a href="/resources/resume.pdf" target="_blank" rel="noopener noreferrer" className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
-                    CV
-                </a>
-                <Link href="/pages/now" className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
-                    now
-                </Link>
-                <Link href="/pages/contact" className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4">
-                    contact
-                </Link>
+                {navItems.map((item) => {
+                    const isResume = item.name === "resume";
+                    return (
+                        <Link
+                            key={item.name}
+                            href={item.href}
+                            target={isResume ? "_blank" : undefined}
+                            rel={isResume ? "noopener noreferrer" : undefined}
+                            className="text-base font-serif text-primary hover:text-foreground transition-colors underline decoration-transparent hover:decoration-primary underline-offset-4"
+                            onClick={(e) => {
+                                if (pathname === "/") {
+                                    if (item.name === "home") {
+                                        e.preventDefault();
+                                        window.scrollTo({ top: 0, behavior: "smooth" });
+                                    } else if (item.name === "about") {
+                                        e.preventDefault();
+                                        document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                                    }
+                                }
+                            }}
+                        >
+                            {item.name}
+                        </Link>
+                    );
+                })}
             </nav>
         </div>
     );

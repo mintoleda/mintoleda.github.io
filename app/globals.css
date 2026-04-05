@@ -6,9 +6,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-playfair);
+  
+  --font-heading: var(--font-space-grotesk), sans-serif;
+  --font-body: var(--font-ibm-plex-sans), sans-serif;
+  --font-label: var(--font-ibm-plex-mono), monospace;
 
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
@@ -42,26 +43,18 @@
 }
 
 :root {
-  /* Using values closer to the provided screenshots */
-  /* Dark mode by default */
   --radius: 0rem;
-  /* Sharp edges as seen in screenshots */
 
-  /* Very dark background #050505 or similar visual */
   --background: hsl(0 0% 4%);
   --foreground: hsl(0 0% 90%);
-  /* Off-white text */
 
-  /* Cards have a solid dark background, lighter than page bg */
   --card: hsl(0 0% 7%);
   --card-foreground: hsl(0 0% 90%);
 
   --popover: hsl(0 0% 7%);
   --popover-foreground: hsl(0 0% 90%);
 
-  /* Green accent color from screenshot links */
   --primary: hsl(100 40% 60%);
-  /* Approximate sage/forest green */
   --primary-foreground: hsl(0 0% 10%);
 
   --secondary: hsl(0 0% 12%);
@@ -90,18 +83,11 @@
   --sidebar-ring: hsl(100 40% 60%);
 }
 
-.dark {
-  /* Ensure dark variables match root since we are dark-first */
-  --background: hsl(0 0% 4%);
-  --foreground: hsl(0 0% 90%);
-  --card: hsl(0 0% 7%);
-  --card-foreground: hsl(0 0% 90%);
-  --primary: hsl(100 40% 60%);
-  --primary-foreground: hsl(0 0% 10%);
-  /* ... repeat if necessary, or let root cascade */
-}
-
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
@@ -116,7 +102,7 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-serif), serif;
+    font-family: var(--font-heading);
   }
 }
 

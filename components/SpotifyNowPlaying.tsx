@@ -4,126 +4,127 @@ import { useEffect, useRef, useState } from "react";
 import { Loader2, Music } from "lucide-react";
 import Link from "next/link";
 import anime from "animejs";
+import { cn } from "@/lib/utils";
 
 interface SpotifyData {
-    isPlaying: boolean;
-    title?: string;
-    artist?: string;
-    album?: string;
-    albumArt?: string;
-    songUrl?: string;
+  isPlaying: boolean;
+  title?: string;
+  artist?: string;
+  album?: string;
+  albumArt?: string;
+  songUrl?: string;
 }
 
-import { cn } from "@/lib/utils"; // Import cn
-
-// ... existing interfaces
-
 export default function SpotifyNowPlaying() {
-    const [data, setData] = useState<SpotifyData | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [isStable, setIsStable] = useState(false); // Add state
-    const listeningRef = useRef<HTMLSpanElement | null>(null);
+  const [data, setData] = useState<SpotifyData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [isStable, setIsStable] = useState(false);
+  const listeningRef = useRef<HTMLSpanElement | null>(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            // ... existing fetch logic
-            try {
-                const response = await fetch(
-                    `${process.env.NEXT_PUBLIC_SPOTIFY_API_URL || "https://rest-ful-spotify-api.vercel.app"}/api/now-playing`
-                );
-                const json = await response.json();
-                setData(json);
-            } catch (error) {
-                console.error("Error fetching Spotify data:", error);
-                setData({ isPlaying: false });
-            } finally {
-                setLoading(false);
-            }
-        };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_SPOTIFY_API_URL || "https://rest-ful-spotify-api.vercel.app"}/api/now-playing`
+        );
+        if (!response.ok) throw new Error("Failed to fetch spotify data");
+        const json = await response.json();
+        setData(json);
+      } catch (error) {
+        console.error("Error fetching Spotify data:", error);
+        setData({ isPlaying: false });
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        fetchData();
-        const interval = setInterval(fetchData, 30000);
-        return () => clearInterval(interval);
-    }, []);
+    fetchData();
+    const interval = setInterval(fetchData, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
-    useEffect(() => {
-        const currentRef = listeningRef.current;
+  useEffect(() => {
+    const currentRef = listeningRef.current;
 
-        if (data?.isPlaying && currentRef && !isStable) {
-            const tl = anime.timeline({
-                easing: 'easeOutQuad',
-            });
+    if (data?.isPlaying && currentRef && !isStable) {
+      const tl = anime.timeline({
+        easing: "easeOutQuad",
+      });
 
-            tl.add({
-                targets: currentRef,
-                translateY: [10, 0],
-                opacity: [0, 1],
-                duration: 600,
-            })
-                .add({
-                    targets: currentRef,
-                    height: 0,
-                    marginBottom: 0,
-                    opacity: 0,
-                    duration: 500,
-                    easing: 'easeInQuad',
-                    delay: 2000,
-                    complete: () => {
-                        setIsStable(true);
-                        currentRef.removeAttribute('style');
-                    }
-                });
-
-            return () => {
-                anime.remove(currentRef);
-            };
+      tl.add({
+        targets: currentRef,
+        translateY: [10, 0],
+        opacity: [0, 1],
+        duration: 600,
+      }).add({
+        targets: currentRef,
+        height: 0,
+        marginBottom: 0,
+        opacity: 0,
+        duration: 500,
+        easing: "easeInQuad",
+        delay: 2000,
+        complete: () => {
+          setIsStable(true);
         }
-    }, [data?.isPlaying, isStable]);
+      });
 
-    if (loading) {
-        return (
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Loader2 className="h-4 w-4 animate-spin" />
-                <span>Loading music status...</span>
-            </div>
-        );
+      return () => {
+        anime.remove(currentRef);
+      };
     }
+  }, [data?.isPlaying, isStable]);
 
-    if (!data?.isPlaying) {
-        return (
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <Music className="h-4 w-4" />
-                <span>Not currently playing</span>
-            </div>
-        );
-    }
-
+  if (loading) {
     return (
-        <div className="group flex items-center gap-3 text-sm text-muted-foreground animate-in fade-in duration-500">
-            <Music className="h-4 w-4 animate-pulse text-green-500 shrink-0" />
-            <div className="flex flex-col min-w-0">
-                <span
-                    ref={listeningRef}
-                    className={cn(
-                        "text-[10px] uppercase tracking-wider text-muted-foreground/80 overflow-hidden mb-0.5",
-                        isStable
-                            ? "h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 group-hover:mb-0.5 transition-all duration-300 ease-in-out block"
-                            : "block"
-                    )}
-                    style={!isStable ? { opacity: 0 } : undefined}
-                >
-                    Listening to
-                </span>
-                <Link
-                    href={data.songUrl || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium hover:text-primary hover:underline transition-colors truncate"
-                >
-                    {data.title}
-                </Link>
-                <span className="text-muted-foreground/60 truncate text-xs">by {data.artist}</span>
-            </div>
-        </div>
+      <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground w-full">
+        <Loader2 className="h-4 w-4 animate-spin" />
+        <span>Loading music status...</span>
+      </div>
     );
+  }
+
+  if (!data?.isPlaying) {
+    return (
+      <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground w-full">
+        <Music className="h-4 w-4" />
+        <span>Not currently playing</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="group flex items-center justify-center gap-3 text-sm text-muted-foreground animate-in fade-in duration-500 w-full">
+      <Music className="h-4 w-4 animate-pulse text-green-500 shrink-0" />
+      <div className="flex flex-col min-w-0">
+        <span
+          ref={listeningRef}
+          className={cn(
+            "text-[10px] uppercase tracking-wider text-muted-foreground/80 overflow-hidden mb-0.5",
+            isStable
+              ? "h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 group-hover:mb-0.5 transition-all duration-300 ease-in-out block"
+              : "block"
+          )}
+          style={!isStable ? { opacity: 0 } : undefined}
+        >
+          Listening to
+        </span>
+        {data.songUrl ? (
+          <Link
+            href={data.songUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium hover:text-primary hover:underline transition-colors truncate"
+          >
+            {data.title}
+          </Link>
+        ) : (
+          <span className="font-medium text-foreground truncate">
+            {data.title}
+          </span>
+        )}
+        <span className="text-muted-foreground/60 truncate text-xs">by {data.artist}</span>
+      </div>
+    </div>
+  );
 }
