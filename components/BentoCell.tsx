@@ -2,7 +2,7 @@
 
 import { useRef, ReactNode, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { applyGlowHover } from "@/lib/bento-animations";
+import { applyLiquidMagneticHover } from "@/lib/bento-animations";
 
 interface BentoCellProps {
   children: ReactNode;
@@ -21,7 +21,7 @@ export function BentoCell({
 
   useEffect(() => {
     if (cellRef.current) {
-      const cleanup = applyGlowHover(cellRef.current);
+      const cleanup = applyLiquidMagneticHover(cellRef.current);
       return cleanup;
     }
   }, []);

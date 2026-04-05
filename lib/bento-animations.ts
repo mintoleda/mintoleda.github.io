@@ -40,8 +40,8 @@ export function rippleEntrance(elements: NodeListOf<Element> | Element[]) {
   });
 }
 
-// Glow effect applied directly to DOM elements
-export function applyGlowHover(element: HTMLElement) {
+// Hybrid: Glow effect + Magnetic pull applied directly to DOM elements
+export function applyLiquidMagneticHover(element: HTMLElement) {
   let isHovered = false;
 
   // Add the glow element dynamically
@@ -56,11 +56,13 @@ export function applyGlowHover(element: HTMLElement) {
   const handleMouseEnter = () => {
     isHovered = true;
     glow.style.opacity = "0.2";
+    gsap.to(element, { scale: 1.02, duration: 0.3, ease: "power2.out" });
   };
 
   const handleMouseLeave = () => {
     isHovered = false;
     glow.style.opacity = "0";
+    gsap.to(element, { x: 0, y: 0, scale: 1, duration: 0.5, ease: "elastic.out(1, 0.5)" });
   };
 
   const handleMouseMove = (e: MouseEvent) => {
@@ -69,8 +71,20 @@ export function applyGlowHover(element: HTMLElement) {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    // Direct style update for performance (gsap ticker could also be used)
+    // Direct style update for glow performance
     glow.style.background = `radial-gradient(circle 300px at ${x}px ${y}px, var(--color-primary), transparent)`;
+
+    // Calculate center-relative coordinates for magnetic pull
+    const centerX = x - rect.width / 2;
+    const centerY = y - rect.height / 2;
+
+    // Apply subtle magnetic pull
+    gsap.to(element, {
+      x: centerX * 0.05, 
+      y: centerY * 0.05,
+      duration: 0.3,
+      ease: "power2.out"
+    });
   };
 
   element.addEventListener("mouseenter", handleMouseEnter);
