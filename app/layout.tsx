@@ -1,21 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Playfair_Display, Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-});
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -54,7 +39,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import Sidebar from "@/components/Sidebar";
 import FloatingHeader from "@/components/FloatingHeader";
-import FontToggle from "@/components/FontToggle";
 
 export default function RootLayout({
   children,
@@ -62,10 +46,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning data-font="space" className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} ${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}>
-      <body
-        className="antialiased"
-      >
+    <html lang="en" suppressHydrationWarning className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}>
+      <body className="antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -79,7 +61,6 @@ export default function RootLayout({
             <main className="md:ml-64 min-h-screen relative p-4 md:p-8">
               {children}
             </main>
-            <FontToggle />
           </div>
         </ThemeProvider>
         <Analytics />
