@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Loader2, Music } from "lucide-react";
 import Link from "next/link";
 import anime from "animejs";
+import { cn } from "@/lib/utils";
 
 interface SpotifyData {
     isPlaying: boolean;
@@ -14,19 +15,14 @@ interface SpotifyData {
     songUrl?: string;
 }
 
-import { cn } from "@/lib/utils"; // Import cn
-
-// ... existing interfaces
-
 export default function SpotifyNowPlaying() {
     const [data, setData] = useState<SpotifyData | null>(null);
     const [loading, setLoading] = useState(true);
-    const [isStable, setIsStable] = useState(false); // Add state
+    const [isStable, setIsStable] = useState(false);
     const listeningRef = useRef<HTMLSpanElement | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
-            // ... existing fetch logic
             try {
                 const response = await fetch(
                     `${process.env.NEXT_PUBLIC_SPOTIFY_API_URL || "https://rest-ful-spotify-api.vercel.app"}/api/now-playing`

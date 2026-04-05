@@ -46,7 +46,8 @@ export default function ParticleImage() {
             if (!ctx) return;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = "#ffffff";
+            const computedColor = getComputedStyle(document.body).color || "#ffffff";
+            ctx.fillStyle = computedColor;
 
             particles.forEach(p => {
                 p.x += p.vx;
@@ -84,6 +85,7 @@ export default function ParticleImage() {
     return (
         <canvas
             ref={canvasRef}
+            aria-hidden="true"
             className="w-full h-full absolute inset-0 opacity-0 pointer-events-none"
         />
     );

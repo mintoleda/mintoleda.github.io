@@ -5,15 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import SpotifyNowPlaying from "./SpotifyNowPlaying";
-
-const navItems = [
-    { name: "home", href: "/" },
-    { name: "about", href: "/#about" },
-    { name: "projects", href: "/pages/projects" },
-    { name: "resume", href: "/resources/resume.pdf" },
-    { name: "now", href: "/pages/now" },
-    { name: "contact", href: "/pages/contact" },
-];
+import { navItems } from "@/data/nav";
 
 export default function Sidebar() {
     const pathname = usePathname();

@@ -90,18 +90,11 @@
   --sidebar-ring: hsl(100 40% 60%);
 }
 
-.dark {
-  /* Ensure dark variables match root since we are dark-first */
-  --background: hsl(0 0% 4%);
-  --foreground: hsl(0 0% 90%);
-  --card: hsl(0 0% 7%);
-  --card-foreground: hsl(0 0% 90%);
-  --primary: hsl(100 40% 60%);
-  --primary-foreground: hsl(0 0% 10%);
-  /* ... repeat if necessary, or let root cascade */
-}
-
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }

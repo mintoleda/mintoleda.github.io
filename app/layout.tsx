@@ -18,8 +18,16 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Adetola Adetunji",
-  description: "Portfolio",
+  title: "Adetola Adetunji | Software Engineer",
+  description: "Personal portfolio and software engineering projects by Adetola Adetunji.",
+  openGraph: {
+    title: "Adetola Adetunji | Software Engineer",
+    description: "Personal portfolio and software engineering projects by Adetola Adetunji.",
+    url: "https://mintoleda.github.io",
+    siteName: "Adetola Adetunji",
+    locale: "en_US",
+    type: "website",
+  },
   icons: {
     icon: "/icon.png",
   },
@@ -27,6 +35,8 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
+import Sidebar from "@/components/Sidebar";
+import FloatingHeader from "@/components/FloatingHeader";
 
 export default function RootLayout({
   children,
@@ -43,7 +53,15 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem={false}
         >
-          {children}
+          <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-primary-foreground">
+            <Sidebar />
+            <div className="md:hidden">
+              <FloatingHeader />
+            </div>
+            <main className="md:ml-64 min-h-screen relative">
+              {children}
+            </main>
+          </div>
         </ThemeProvider>
         <Analytics />
       </body>
