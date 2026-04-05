@@ -1,4 +1,7 @@
 import { contacts } from "@/data/contact";
+import { BentoGrid } from "@/components/BentoGrid";
+import { BentoCell } from "@/components/BentoCell";
+import { ArrowUpRight, MessageSquare } from "lucide-react";
 
 export const metadata = {
   title: "Contact | Adetola Adetunji",
@@ -7,50 +10,54 @@ export const metadata = {
 
 export default function ContactPage() {
     return (
-        <div className="max-w-4xl mx-auto px-6 py-24 space-y-12 w-full animate-in fade-in slide-in-from-bottom-8 duration-1000 fill-mode-both flex flex-col justify-center min-h-[calc(100vh-120px)]">
-            <div className="space-y-6">
-                <h2 className="text-5xl md:text-7xl font-bold font-serif">Contact</h2>
-                <div className="h-px w-full bg-border" />
-            </div>
-
-            <div className="grid gap-8 md:grid-cols-2">
-                <div className="space-y-6">
-                    <p className="text-xl md:text-2xl text-muted-foreground font-serif leading-relaxed">
-                        Feel free to reach out!
-                    </p>
-
-                    <div className="pt-8">
-                        <h3 className="text-2xl font-bold font-serif mb-6 text-primary">Get in touch</h3>
-                        <div className="space-y-6">
-                            {contacts.map((contact) => (
-                                <a
-                                    key={contact.name}
-                                    href={contact.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-4 group p-4 border border-border/40 hover:border-primary/50 bg-card/30 hover:bg-card/50 transition-all duration-300 rounded-lg"
-                                >
-                                    <div className="p-3 bg-primary/10 text-primary rounded-full group-hover:scale-110 transition-transform duration-300">
-                                        <contact.icon size={24} />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-muted-foreground font-medium mb-1">{contact.name}</p>
-                                        <p className="text-lg font-serif group-hover:text-primary transition-colors">{contact.value}</p>
-                                    </div>
-                                </a>
-                            ))}
-                        </div>
+        <div className="max-w-5xl mx-auto flex flex-col justify-center min-h-[calc(100vh-64px)] pb-24 md:pb-0">
+            <BentoGrid>
+                {/* Title Cell */}
+                <BentoCell colSpan={4} rowSpan={1} className="p-8 md:p-10 flex items-center justify-between bg-primary/5">
+                    <div className="space-y-2">
+                        <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight">
+                            Contact
+                        </h2>
+                        <p className="text-muted-foreground font-body">Let's connect and build something.</p>
                     </div>
-                </div>
+                    <MessageSquare size={48} className="text-primary/20 hidden md:block" />
+                </BentoCell>
 
-                <div className="hidden md:flex items-center justify-center p-8 border border-border/40 bg-card/10 rounded-2xl">
-                    <div className="text-center space-y-4">
-                        <p className="text-muted-foreground italic font-serif">
-                            “There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle.”
+                {/* Contact Links */}
+                {contacts.map((contact, index) => (
+                    <BentoCell key={contact.name} colSpan={index === 0 ? 2 : 1} rowSpan={1} className="group">
+                        <a 
+                            href={contact.href} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex flex-col justify-between h-full p-6 md:p-8"
+                        >
+                            <div className="flex justify-between items-start mb-8">
+                                <div className="p-3 bg-secondary rounded-xl text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                                    <contact.icon size={24} />
+                                </div>
+                                <ArrowUpRight size={20} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                            </div>
+                            <div>
+                                <div className="text-xs font-label uppercase tracking-wider text-muted-foreground mb-1">{contact.name}</div>
+                                <div className="text-xl font-heading font-medium truncate group-hover:text-primary transition-colors">{contact.value}</div>
+                            </div>
+                        </a>
+                    </BentoCell>
+                ))}
+
+                {/* Quote Cell */}
+                <BentoCell colSpan={4} rowSpan={1} className="p-8 md:p-12 flex items-center justify-center bg-card/80">
+                    <div className="text-center space-y-4 max-w-2xl">
+                        <p className="text-xl md:text-2xl text-foreground italic font-heading">
+                            "There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle."
+                        </p>
+                        <p className="text-sm font-label text-muted-foreground uppercase tracking-widest">
+                            — Albert Einstein
                         </p>
                     </div>
-                </div>
-            </div>
+                </BentoCell>
+            </BentoGrid>
         </div>
     );
 }

@@ -42,7 +42,7 @@ export default function Sidebar() {
     return (
         <aside className="fixed left-0 top-0 h-screen w-64 p-8 flex flex-col justify-between hidden md:flex z-50">
             <div>
-                <h1 className="text-2xl font-bold font-serif mb-8 text-foreground">
+                <h1 className="text-2xl font-bold font-heading tracking-tight mb-8 text-foreground">
                     Adetola Adetunji
                 </h1>
                 <nav className="flex flex-col space-y-4">
@@ -65,7 +65,7 @@ export default function Sidebar() {
                                 target={isResume ? "_blank" : undefined}
                                 rel={isResume ? "noopener noreferrer" : undefined}
                                 className={cn(
-                                    "text-lg transition-colors font-serif capitalize",
+                                    "text-sm tracking-widest transition-colors font-label uppercase",
                                     isActive
                                         ? "text-primary font-medium"
                                         : "text-muted-foreground hover:text-primary"
@@ -76,8 +76,8 @@ export default function Sidebar() {
                                             e.preventDefault();
                                             window.scrollTo({ top: 0, behavior: "smooth" });
                                         } else if (item.name === "about") {
-                                            e.preventDefault();
-                                            document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+                                            // about section doesn't exist anymore on the homepage
+                                            // we will transition naturally or link normally if it's a separate page
                                         }
                                     }
                                 }}
