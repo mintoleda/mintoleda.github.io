@@ -1,7 +1,7 @@
 import { contacts } from "@/data/contact";
 import { BentoGrid } from "@/components/BentoGrid";
 import { BentoCell } from "@/components/BentoCell";
-import { ArrowUpRight, MessageSquare } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export const metadata = {
   title: "Contact | Adetola Adetunji",
@@ -18,8 +18,10 @@ export default function ContactPage() {
                         <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight lowercase">
                             Contact
                         </h2>
+                        <p className="text-sm font-label uppercase tracking-[0.2em] text-muted-foreground/50">
+                            get in touch
+                        </p>
                     </div>
-                    <MessageSquare size={48} className="text-primary/20 hidden md:block" />
                 </BentoCell>
 
                 {/* Contact Links */}
@@ -32,9 +34,9 @@ export default function ContactPage() {
                             className="flex flex-col justify-between h-full p-6 md:p-8"
                         >
                             <div className="flex justify-between items-start mb-8">
-                                <div className="p-3 bg-secondary rounded-xl text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
-                                    <contact.icon size={24} />
-                                </div>
+                                <span className="text-[10px] font-label uppercase tracking-widest text-muted-foreground/50">
+                                    {contact.description}
+                                </span>
                                 <ArrowUpRight size={20} className="text-muted-foreground group-hover:text-primary transition-colors" />
                             </div>
                             <div>

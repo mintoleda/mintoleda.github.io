@@ -1,6 +1,6 @@
 import { BentoGrid } from "@/components/BentoGrid";
 import { BentoCell } from "@/components/BentoCell";
-import { ArrowUpRight, Clock, Tv } from "lucide-react";
+import { ArrowUpRight, Tv } from "lucide-react";
 
 export const metadata = {
   title: "Now | Adetola Adetunji",
@@ -21,8 +21,10 @@ export default function NowPage() {
             <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight lowercase">
               Now
             </h2>
+            <p className="text-sm font-label uppercase tracking-[0.2em] text-muted-foreground/50">
+              what I'm currently up to
+            </p>
           </div>
-          <Clock size={48} className="text-primary/20 hidden md:block" />
         </BentoCell>
 
         {/* Status Cell */}

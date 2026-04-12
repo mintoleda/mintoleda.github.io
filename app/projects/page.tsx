@@ -2,7 +2,7 @@ import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
 import { BentoGrid } from "@/components/BentoGrid";
 import { BentoCell } from "@/components/BentoCell";
-import { FolderGit2, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export const metadata = {
   title: "Projects | Adetola Adetunji",
@@ -19,8 +19,10 @@ export default function ProjectsPage() {
             <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight lowercase">
               Projects
             </h2>
+            <p className="text-sm font-label uppercase tracking-[0.2em] text-muted-foreground/50">
+              selected work and experiments
+            </p>
           </div>
-          <FolderGit2 size={48} className="text-primary/20 hidden md:block" />
         </BentoCell>
 
         {/* Project Cells */}

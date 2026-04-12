@@ -2,7 +2,7 @@ import { BentoGrid } from "@/components/BentoGrid";
 import { BentoCell } from "@/components/BentoCell";
 import { ThemeCarouselCell } from "@/components/ThemeCarouselCell";
 import { HardwareCarouselCell } from "@/components/HardwareCarouselCell";
-import { ArrowUpRight, Code, Monitor } from "lucide-react";
+import { ArrowUpRight, Code } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
@@ -27,8 +27,10 @@ export default function UsesPage() {
             <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight lowercase">
               Uses
             </h2>
+            <p className="text-sm font-label uppercase tracking-[0.2em] text-muted-foreground/50">
+              gear, software, and setup
+            </p>
           </div>
-          <Monitor size={48} className="text-primary/20 hidden md:block" />
         </BentoCell>
 
         {/* Software Cell */}

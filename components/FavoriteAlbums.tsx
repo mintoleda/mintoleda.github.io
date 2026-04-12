@@ -19,10 +19,10 @@ interface AlbumData {
 }
 
 const ALBUM_DATA = [
-  { title: "good kid, m.A.A.d city", artist: "Kendrick Lamar", query: "good kid, m.A.A.d city", spotifyUrl: "https://open.spotify.com/search/good%20kid%20m.A.A.d%20city" },
-  { title: "PLAN A", artist: "Lil Tecca", query: "Plan A Lil Tecca", spotifyUrl: "https://open.spotify.com/search/Plan%20A%20Lil%20Tecca" },
-  { title: "DOPAMINE", artist: "Lil Tecca", query: "Dopamine Lil Tecca", spotifyUrl: "https://open.spotify.com/search/Dopamine%20Lil%20Tecca" },
-  { title: "2014 Forest Hills Drive", artist: "J. Cole", query: "2014 Forest Hills Drive", spotifyUrl: "https://open.spotify.com/search/2014%20Forest%20Hills%20Drive" },
+  { title: "good kid, m.A.A.d city", artist: "Kendrick Lamar", query: "good kid, m.A.A.d city", spotifyUrl: "https://open.spotify.com/album/3DGQ1iZ9XKUQxAUWjfC34w" },
+  { title: "PLAN A", artist: "Lil Tecca", query: "Plan A Lil Tecca", spotifyUrl: "https://open.spotify.com/album/6uWva3kfeqqVIsNAJ2MmeL" },
+  { title: "DOPAMINE", artist: "Lil Tecca", query: "Dopamine Lil Tecca", spotifyUrl: "https://open.spotify.com/album/0CLqdKIh14TmKqLZCs9dml" },
+  { title: "2014 Forest Hills Drive", artist: "J. Cole", query: "2014 Forest Hills Drive", spotifyUrl: "https://open.spotify.com/album/0UMMIkurRUmkruZ3KGBLtG" },
   { title: "The Boy Who Played The Harp", artist: "Dave", query: "The Boy Who Played The Harp", imageUrl: "https://i.scdn.co/image/ab67616d0000b273fecaa7826bb0cbe139a8cb83", spotifyUrl: "https://open.spotify.com/album/24f1GFXCkViGoRpmGqlSSl" }
 ];
 
@@ -32,28 +32,28 @@ const fallbackAlbums: AlbumData[] = [
     title: "good kid, m.A.A.d city",
     artist: "Kendrick Lamar",
     coverUrl: "https://images.unsplash.com/photo-1493225457124-a1a2a5f5691f?q=80&w=300&auto=format&fit=crop",
-    spotifyUrl: "https://open.spotify.com/search/good%20kid%20m.A.A.d%20city",
+    spotifyUrl: "https://open.spotify.com/album/3DGQ1iZ9XKUQxAUWjfC34w",
     colors: { vibrant: "#7f1d1d", darkVibrant: "#450a0a", muted: "#f87171", darkMuted: "#ef4444" }
   },
   {
     title: "PLAN A",
     artist: "Lil Tecca",
     coverUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=300&auto=format&fit=crop",
-    spotifyUrl: "https://open.spotify.com/search/Plan%20A%20Lil%20Tecca",
+    spotifyUrl: "https://open.spotify.com/album/6uWva3kfeqqVIsNAJ2MmeL",
     colors: { vibrant: "#166534", darkVibrant: "#14532d", muted: "#4ade80", darkMuted: "#22c55e" }
   },
   {
     title: "DOPAMINE",
     artist: "Lil Tecca",
     coverUrl: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=300&auto=format&fit=crop",
-    spotifyUrl: "https://open.spotify.com/search/Dopamine%20Lil%20Tecca",
+    spotifyUrl: "https://open.spotify.com/album/0CLqdKIh14TmKqLZCs9dml",
     colors: { vibrant: "#52525b", darkVibrant: "#27272a", muted: "#a1a1aa", darkMuted: "#3f3f46" }
   },
   {
     title: "2014 Forest Hills Drive",
     artist: "J. Cole",
     coverUrl: "https://images.unsplash.com/photo-1493225457124-a1a2a5f5691f?q=80&w=300&auto=format&fit=crop",
-    spotifyUrl: "https://open.spotify.com/search/2014%20Forest%20Hills%20Drive",
+    spotifyUrl: "https://open.spotify.com/album/0UMMIkurRUmkruZ3KGBLtG",
     colors: { vibrant: "#7f1d1d", darkVibrant: "#450a0a", muted: "#f87171", darkMuted: "#ef4444" }
   },
   {
