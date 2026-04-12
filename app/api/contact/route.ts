@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { contacts } from "@/data/contact";
 
-// Remove the icon component from the contact data as it can't be serialized to JSON
-const serializedContacts = contacts.map(({ icon, ...rest }) => rest);
+// Since icons were removed, we can just use the contacts as they are
+const serializedContacts = contacts;
 
 export async function GET() {
   return NextResponse.json(serializedContacts, {
