@@ -6,6 +6,12 @@ export const projects = [
         tags: ["Java", "Kafka", "Spring Boot", "Docker", "PostgreSQL"]
     },
     {
+        title: "Talos",
+        description: "Terminal-native coding-agent harness in Go, paired with a web GUI for driving agents.",
+        href: "https://github.com/mintoleda/talos",
+        tags: ["Go", "TypeScript", "React", "Electron", "TUI"]
+    },
+    {
         title: "RESTful Spotify API",
         description: "Backend service for real-time Spotify data integration with sub-second latency.",
         href: "https://github.com/mintoleda/RESTful-Spotify-API",

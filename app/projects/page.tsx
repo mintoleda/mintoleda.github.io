@@ -27,13 +27,11 @@ export default function ProjectsPage() {
 
         {/* Project Cells */}
         {projects.map((project, index) => {
-          // Make the first project take 4 cols, others take 2
-          const isFeatured = index === 0;
           return (
-            <BentoCell 
-              key={index} 
-              colSpan={isFeatured ? 4 : 2} 
-              rowSpan={isFeatured ? 2 : 1}
+            <BentoCell
+              key={index}
+              colSpan={2}
+              rowSpan={1}
               className="group"
             >
               <a href={project.href} target="_blank" rel="noopener noreferrer" className="block h-full p-6 md:p-8 flex flex-col">
