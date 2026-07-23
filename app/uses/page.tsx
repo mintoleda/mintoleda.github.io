@@ -1,8 +1,3 @@
-import { BentoGrid } from "@/components/BentoGrid";
-import { BentoCell } from "@/components/BentoCell";
-import { ThemeCarouselCell } from "@/components/ThemeCarouselCell";
-import { HardwareCarouselCell } from "@/components/HardwareCarouselCell";
-import { ArrowUpRight, Code } from "lucide-react";
 import Link from "next/link";
 
 export const metadata = {
@@ -11,78 +6,71 @@ export const metadata = {
 };
 
 const software = [
-  { category: "Editor", name: "Neovim", detail: "Lightweight & extensible", href: "https://neovim.io/" },
-  { category: "Terminal", name: "foot", detail: "Custom fork w/ tabs", href: "https://codeberg.org/dnkl/foot" },
-  { category: "Shell", name: "zsh", detail: "With Oh My Zsh", href: "https://www.zsh.org/", detailLink: "https://ohmyz.sh/" },
-  { category: "Font", name: "Liga SFMono", detail: "Monospace with ligatures", href: "https://github.com/shaunsingh/SFMono-Nerd-Font-Ligaturized" },
+  { label: "editor", value: "neovim" },
+  { label: "terminal", value: "foot" },
+  { label: "shell", value: "bash" },
+  { label: "compositor", value: "niri" },
+  { label: "os", value: "nixos" },
+  { label: "font", value: "liga sfmono nerd font" },
+  { label: "browser", value: "firefox" },
+  { label: "theme", value: "kanso" },
+];
+
+const hardware = [
+  { label: "laptop", value: "asus vivobook pro — i9-13900H, rtx 3050, 16gb" },
+  { label: "desktop", value: "ryzen 5 5600x, rx 6700 xt, 16gb" },
 ];
 
 export default function UsesPage() {
   return (
-    <div className="max-w-5xl mx-auto flex flex-col justify-center min-h-[calc(100vh-64px)] pb-24 md:pb-0">
-      <BentoGrid>
-        {/* Title Cell */}
-        <BentoCell colSpan={4} rowSpan={1} className="p-8 md:p-10 flex items-center justify-between bg-primary/5">
-          <div className="space-y-2">
-            <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight lowercase">
-              Uses
-            </h2>
-            <p className="text-sm font-label uppercase tracking-[0.2em] text-muted-foreground/50">
-              gear, software, and setup
-            </p>
-          </div>
-        </BentoCell>
+    <div className="space-y-12 pt-20">
+      <span className="text-muted-foreground text-sm">$ cat uses.md</span>
 
-        {/* Software Cell */}
-        <BentoCell colSpan={2} rowSpan={1} className="p-6 md:p-8 flex flex-col justify-between">
-          <div className="flex justify-between items-start text-muted-foreground mb-6">
-            <div className="text-xs font-label uppercase tracking-wider">Software</div>
-            <Code size={18} />
-          </div>
-          <div className="grid grid-cols-2 gap-3 mt-auto">
-            {software.map((item) => (
-              <div key={item.category} className="p-3 rounded-lg bg-secondary/50 border border-border/30">
-                <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">{item.category}</div>
-                {item.href ? (
-                  <Link href={item.href} target="_blank" rel="noopener noreferrer" className="text-sm font-heading font-medium text-primary hover:text-primary/80 transition-colors">
-                    {item.name}
-                  </Link>
-                ) : (
-                  <div className="text-sm font-heading font-medium">{item.name}</div>
-                )}
-                <div className="text-xs text-muted-foreground mt-0.5">
-                  {item.detailLink ? (
-                    <>With <Link href={item.detailLink} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80 transition-colors">Oh My Zsh</Link></>
-                  ) : (
-                    item.detail
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </BentoCell>
+      <section className="space-y-4">
+        <h2 className="text-sm text-primary uppercase tracking-wider">
+          software
+        </h2>
+        <div className="border border-border rounded-md divide-y divide-border">
+          {software.map((item) => (
+            <div key={item.label} className="flex items-center gap-4 p-4">
+              <span className="text-sm text-muted-foreground w-24 shrink-0">
+                {item.label}
+              </span>
+              <span className="text-foreground">{item.value}</span>
+            </div>
+          ))}
+        </div>
+      </section>
 
-        {/* Hardware Cell */}
-        <HardwareCarouselCell />
+      <section className="space-y-4">
+        <h2 className="text-sm text-primary uppercase tracking-wider">
+          hardware
+        </h2>
+        <div className="border border-border rounded-md divide-y divide-border">
+          {hardware.map((item) => (
+            <div key={item.label} className="flex items-center gap-4 p-4">
+              <span className="text-sm text-muted-foreground w-24 shrink-0">
+                {item.label}
+              </span>
+              <span className="text-foreground">{item.value}</span>
+            </div>
+          ))}
+        </div>
+      </section>
 
-        {/* Themes Cell */}
-        <ThemeCarouselCell />
-
-        {/* Meta Cell */}
-        <BentoCell colSpan={4} rowSpan={1} className="p-6 md:p-8 flex items-center justify-between bg-secondary/10">
-          <p className="text-sm font-label text-muted-foreground uppercase tracking-widest">
-            Last updated: April 2026
-          </p>
-          <a
-            href="https://uses.tech"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-primary font-label uppercase tracking-widest text-sm hover:text-primary/80 transition-colors"
-          >
-            what is a /uses page? <ArrowUpRight size={16} />
-          </a>
-        </BentoCell>
-      </BentoGrid>
+      <footer className="flex items-center justify-between text-sm text-muted-foreground border-t border-border pt-8">
+        <Link href="/" className="hover:text-foreground transition-colors">
+          &larr; home
+        </Link>
+        <a
+          href="https://uses.tech"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-foreground transition-colors"
+        >
+          what is a /uses page?
+        </a>
+      </footer>
     </div>
   );
 }

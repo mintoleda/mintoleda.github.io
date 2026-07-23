@@ -1,8 +1,5 @@
-import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/data/projects";
-import { BentoGrid } from "@/components/BentoGrid";
-import { BentoCell } from "@/components/BentoCell";
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = {
   title: "Projects | Adetola Adetunji",
@@ -11,67 +8,64 @@ export const metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="max-w-5xl mx-auto flex flex-col justify-center min-h-[calc(100vh-64px)] pb-24 md:pb-0">
-      <BentoGrid>
-        {/* Title Cell - 4x1 */}
-        <BentoCell colSpan={4} rowSpan={1} className="p-8 md:p-10 flex items-center justify-between bg-primary/5">
-          <div className="space-y-2">
-            <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight lowercase">
-              Projects
-            </h2>
-            <p className="text-sm font-label uppercase tracking-[0.2em] text-muted-foreground/50">
-              selected work and experiments
-            </p>
-          </div>
-        </BentoCell>
-
-        {/* Project Cells */}
-        {projects.map((project, index) => {
-          return (
-            <BentoCell
-              key={index}
-              colSpan={2}
-              rowSpan={1}
-              className="group"
-            >
-              <a href={project.href} target="_blank" rel="noopener noreferrer" className="block h-full p-6 md:p-8 flex flex-col">
-                <div className="flex justify-between items-start mb-6">
-                  <h3 className="text-2xl font-heading font-medium group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <div className="p-2 bg-secondary rounded-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <ArrowUpRight size={16} />
-                  </div>
-                </div>
-                
-                <p className="text-muted-foreground font-body mb-8 text-lg">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="px-2.5 py-1 bg-secondary/50 text-secondary-foreground font-label text-xs uppercase tracking-wider rounded-md border border-border/30">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </a>
-            </BentoCell>
-          );
-        })}
-
-        {/* GitHub Link Cell */}
-        <BentoCell colSpan={4} rowSpan={1} className="p-6 md:p-8 flex items-center justify-center hover:bg-secondary/20 transition-colors">
-          <a 
-            href="https://github.com/mintoleda" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-primary font-label uppercase tracking-widest text-sm"
+    <div className="space-y-12 pt-20">
+      <div className="flex items-center justify-between">
+        <span className="text-muted-foreground text-sm">$ ls projects/</span>
+        <a
+          href="https://github.com/mintoleda"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="16"
+            height="16"
+            fill="currentColor"
           >
-            View all on GitHub <ArrowUpRight size={16} />
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+          all repos
+        </a>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {projects.map((project) => (
+          <a
+            key={project.title}
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block p-6 border border-border rounded-md hover:border-primary/50 transition-colors"
+          >
+            <h3 className="font-bold text-foreground group-hover:text-primary transition-colors mb-2">
+              {project.title}
+            </h3>
+            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+              {project.description}
+            </p>
+            <div className="flex flex-wrap gap-1 text-xs text-muted-foreground">
+              {project.tags.map((tag, i) => (
+                <span key={tag}>
+                  {tag}
+                  {i < project.tags.length - 1 && (
+                    <span className="mx-1">&middot;</span>
+                  )}
+                </span>
+              ))}
+            </div>
           </a>
-        </BentoCell>
-      </BentoGrid>
+        ))}
+      </div>
+
+      <footer className="flex items-center justify-between text-sm text-muted-foreground border-t border-border pt-8">
+        <Link href="/" className="hover:text-foreground transition-colors">
+          &larr; home
+        </Link>
+        <Link href="#" className="hover:text-foreground transition-colors">
+          top &uarr;
+        </Link>
+      </footer>
     </div>
   );
 }

@@ -1,92 +1,68 @@
-import { BentoGrid } from "@/components/BentoGrid";
-import { BentoCell } from "@/components/BentoCell";
-import { ArrowUpRight, Tv } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = {
   title: "Now | Adetola Adetunji",
   description: "What I'm currently up to.",
 };
 
+const items = [
+  {
+    label: "focus",
+    value: "summer",
+  },
+  {
+    label: "building",
+    value: "talos",
+    href: "https://github.com/mintoleda/talos",
+  },
+  { label: "watching", value: "on hiatus" },
+  { label: "reading", value: "dune — frank herbert" },
+];
+
 export default function NowPage() {
   return (
-    <div className="max-w-5xl mx-auto flex flex-col justify-center min-h-[calc(100vh-64px)] pb-24 md:pb-0">
-      <BentoGrid>
-        {/* Title Cell */}
-        <BentoCell
-          colSpan={4}
-          rowSpan={1}
-          className="p-8 md:p-10 flex items-center justify-between bg-primary/5"
-        >
-          <div className="space-y-2">
-            <h2 className="text-4xl md:text-6xl font-heading font-bold tracking-tight lowercase">
-              Now
-            </h2>
-            <p className="text-sm font-label uppercase tracking-[0.2em] text-muted-foreground/50">
-              what I'm currently up to
-            </p>
-          </div>
-        </BentoCell>
+    <div className="space-y-12 pt-20">
+      <span className="text-muted-foreground text-sm">$ cat now.md</span>
 
-        {/* Status Cell */}
-        <BentoCell
-          colSpan={2}
-          rowSpan={1}
-          className="p-6 md:p-8 flex flex-col justify-between"
-        >
-          <div className="text-xs font-label uppercase tracking-wider text-muted-foreground mb-6">
-            Current Focus
+      <div className="border border-border rounded-md divide-y divide-border">
+        {items.map((item) => (
+          <div key={item.label} className="flex items-start gap-4 p-4">
+            <span className="text-sm text-muted-foreground w-20 shrink-0">
+              {item.label}
+            </span>
+            {item.href ? (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground underline underline-offset-4 hover:text-muted-foreground transition-colors"
+              >
+                {item.value}
+              </a>
+            ) : (
+              <span className="text-foreground">{item.value}</span>
+            )}
           </div>
-          <div>
-            <h3 className="text-2xl font-heading font-medium text-foreground">
-              finishing up school
-            </h3>
-            <p className="text-muted-foreground font-body mt-2">
-              weekly exams and final projects.
-            </p>
-          </div>
-        </BentoCell>
+        ))}
+      </div>
 
-        {/* Now Watching Cell */}
-        <BentoCell
-          colSpan={2}
-          rowSpan={1}
-          className="p-6 md:p-8 flex flex-col justify-between"
-        >
-          <div className="flex justify-between items-start text-muted-foreground mb-6">
-            <div className="text-xs font-label uppercase tracking-wider">
-              Now Watching
-            </div>
-            <Tv size={18} />
-          </div>
-          <div>
-            <h3 className="text-2xl font-heading font-medium text-foreground">
-              The Flash
-            </h3>
-            <p className="text-muted-foreground font-body mt-2">
-              rewatching on netflix (6th time!)
-            </p>
-          </div>
-        </BentoCell>
+      <div className="text-sm text-muted-foreground">
+        last updated: july 2026
+      </div>
 
-        {/* Meta Cell */}
-        <BentoCell
-          colSpan={4}
-          rowSpan={1}
-          className="p-6 md:p-8 flex items-center justify-between bg-secondary/10"
+      <footer className="flex items-center justify-between text-sm text-muted-foreground border-t border-border pt-8">
+        <Link href="/" className="hover:text-foreground transition-colors">
+          &larr; home
+        </Link>
+        <a
+          href="https://sive.rs/nowff"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-foreground transition-colors"
         >
-          <p className="text-sm font-label text-muted-foreground uppercase tracking-widest">
-            Last updated: April 2026
-          </p>
-          <a
-            href="https://sive.rs/nowff"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 text-primary font-label uppercase tracking-widest text-sm hover:text-primary/80 transition-colors"
-          >
-            what is a /now page? <ArrowUpRight size={16} />
-          </a>
-        </BentoCell>
-      </BentoGrid>
+          what is a /now page?
+        </a>
+      </footer>
     </div>
   );
 }

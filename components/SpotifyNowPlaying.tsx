@@ -1,25 +1,17 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { Loader2, Music } from "lucide-react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import anime from "animejs";
-import { cn } from "@/lib/utils";
 
 interface SpotifyData {
   isPlaying: boolean;
   title?: string;
   artist?: string;
-  album?: string;
-  albumArt?: string;
   songUrl?: string;
 }
 
 export default function SpotifyNowPlaying() {
   const [data, setData] = useState<SpotifyData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [isStable, setIsStable] = useState(false);
-  const listeningRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,104 +19,43 @@ export default function SpotifyNowPlaying() {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_SPOTIFY_API_URL || "https://rest-ful-spotify-api.vercel.app"}/api/now-playing`
         );
-        if (!response.ok) throw new Error("Failed to fetch spotify data");
-        const json = await response.json();
-        setData(json);
-      } catch (error) {
-        console.error("Error fetching Spotify data:", error);
+        if (!response.ok) throw new Error();
+        setData(await response.json());
+      } catch {
         setData({ isPlaying: false });
-      } finally {
-        setLoading(false);
       }
     };
-
     fetchData();
     const interval = setInterval(fetchData, 30000);
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const currentRef = listeningRef.current;
-
-    if (data?.isPlaying && currentRef && !isStable) {
-      const tl = anime.timeline({
-        easing: "easeOutQuad",
-      });
-
-      tl.add({
-        targets: currentRef,
-        translateY: [10, 0],
-        opacity: [0, 1],
-        duration: 600,
-      }).add({
-        targets: currentRef,
-        height: 0,
-        marginBottom: 0,
-        opacity: 0,
-        duration: 500,
-        easing: "easeInQuad",
-        delay: 2000,
-        complete: () => {
-          setIsStable(true);
-        }
-      });
-
-      return () => {
-        anime.remove(currentRef);
-      };
-    }
-  }, [data?.isPlaying, isStable]);
-
-  if (loading) {
+  if (!data || !data.isPlaying) {
     return (
-      <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground w-full">
-        <Loader2 className="h-4 w-4 animate-spin" />
-        <span>Loading music status...</span>
-      </div>
+      <span className="px-3 py-1 text-sm text-muted-foreground border border-border rounded-md inline-flex items-center gap-2">
+        <span className="w-1.5 h-1.5 rounded-full bg-muted-foreground/50" />
+        offline
+      </span>
     );
   }
 
-  if (!data?.isPlaying) {
-    return (
-      <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground w-full">
-        <Music className="h-4 w-4" />
-        <span>Not currently playing</span>
-      </div>
-    );
-  }
+  const label = `${data.title} — ${data.artist}`;
 
   return (
-    <div className="group flex items-center justify-center gap-3 text-sm text-muted-foreground animate-in fade-in duration-500 w-full">
-      <Music className="h-4 w-4 animate-pulse text-green-500 shrink-0" />
-      <div className="flex flex-col min-w-0">
-        <span
-          ref={listeningRef}
-          className={cn(
-            "text-[10px] uppercase tracking-wider text-muted-foreground/80 overflow-hidden mb-0.5",
-            isStable
-              ? "h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 group-hover:mb-0.5 transition-all duration-300 ease-in-out block"
-              : "block"
-          )}
-          style={!isStable ? { opacity: 0 } : undefined}
+    <span className="px-3 py-1 text-sm border border-border rounded-md inline-flex items-center gap-2 max-w-[280px]">
+      <span className="w-1.5 h-1.5 rounded-full bg-[#8a9a7b] shrink-0 animate-pulse" />
+      {data.songUrl ? (
+        <Link
+          href={data.songUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="truncate text-muted-foreground hover:text-primary transition-colors"
         >
-          Listening to
-        </span>
-        {data.songUrl ? (
-          <Link
-            href={data.songUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium hover:text-primary hover:underline transition-colors truncate"
-          >
-            {data.title}
-          </Link>
-        ) : (
-          <span className="font-medium text-foreground truncate">
-            {data.title}
-          </span>
-        )}
-        <span className="text-muted-foreground/60 truncate text-xs">by {data.artist}</span>
-      </div>
-    </div>
+          {label}
+        </Link>
+      ) : (
+        <span className="truncate text-muted-foreground">{label}</span>
+      )}
+    </span>
   );
 }

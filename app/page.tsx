@@ -1,238 +1,164 @@
-import { BentoGrid } from "@/components/BentoGrid";
-import { BentoCell } from "@/components/BentoCell";
-import { LiveClock } from "@/components/LiveClock";
-import { LocationCell } from "@/components/LocationCell";
-import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
-import FavoriteAlbums from "@/components/FavoriteAlbums";
 import { skills } from "@/data/skills";
+import { experience } from "@/data/experience";
+import { LiveClock } from "@/components/LiveClock";
+import SpotifyNowPlaying from "@/components/SpotifyNowPlaying";
+import GitHubGraph from "@/components/GitHubGraph";
+import FavoriteAlbums from "@/components/FavoriteAlbums";
+import Footer from "@/components/Footer";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  BookOpen,
-  Code,
-  Disc,
-  Gamepad2,
-  GraduationCap,
-  Monitor,
-  Music,
-  Terminal,
-} from "lucide-react";
+
+function GithubIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+    </svg>
+  );
+}
+
+function LinkedInIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="max-w-5xl mx-auto flex flex-col justify-center min-h-[calc(100vh-64px)] pb-24 md:pb-0">
-      <BentoGrid>
-        {/* Intro Cell - 2x2 */}
-        <BentoCell
-          colSpan={2}
-          rowSpan={2}
-          className="p-8 md:p-10 flex flex-col justify-between group overflow-hidden bg-gradient-to-br from-card to-card/50"
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--color-primary)_0%,transparent_60%)] opacity-5 group-hover:opacity-10 transition-opacity duration-700" />
-          <div className="space-y-4 z-10">
-            <h1 className="text-5xl md:text-7xl font-heading font-bold tracking-tighter leading-[1.1]">
-              Adetola
-              <br />
-              <span className="text-muted-foreground">Adetunji</span>
-            </h1>
-            <p className="text-base md:text-lg font-body text-muted-foreground max-w-md leading-relaxed">
-              software engineer studying cs & data science at ut austin. i play
-              saxophone and experiment with my{" "}
-              <a
-                href="https://github.com/mintoleda/dotfiles"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline underline-offset-4 decoration-primary/50 transition-colors"
-              >
-                hyprland config
-              </a>
-              .
-            </p>
-          </div>
-          <div className="mt-12 z-10">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-primary-foreground font-label text-sm uppercase tracking-wider hover:bg-primary/90 transition-colors"
+    <div className="space-y-16 pt-20">
+      <section className="space-y-6">
+        <span className="text-muted-foreground text-sm">~ whoami</span>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+          adetola{" "}
+          <span className="text-muted-foreground font-normal">/ mintoleda</span>
+        </h1>
+        <p className="text-lg text-foreground max-w-xl leading-relaxed">
+          cs & data science at ut austin. i build backend systems, play
+          saxophone, and experiment with my{" "}
+          <a
+            href="https://github.com/mintoleda/dotfiles-hyprland"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground line-through hover:underline underline-offset-4"
+          >
+            hyprland
+          </a>{" "}
+          <a
+            href="https://github.com/mintoleda/dotfiles"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline underline-offset-4"
+          >
+            nix config
+          </a>
+          .
+        </p>
+
+        <p className="text-foreground">
+          <span className="text-primary">▸</span> building backend systems with{" "}
+          <strong>java</strong>
+        </p>
+
+        <div className="flex flex-wrap gap-2">
+          {skills.map((skill) => (
+            <span
+              key={skill}
+              className="px-3 py-1 text-sm text-primary border border-border rounded-md"
             >
-              Get in touch
-              <ArrowUpRight size={16} />
-            </Link>
-          </div>
-        </BentoCell>
-
-        {/* Quote Cell - 2x1 */}
-        <BentoCell
-          colSpan={2}
-          rowSpan={1}
-          className="p-6 md:p-8 flex flex-col justify-center bg-card/80"
-        >
-          <blockquote className="text-xl md:text-2xl text-foreground font-heading italic">
-            &quot;When will you consider the possibility that you are exactly
-            who you want to be?&quot;
-          </blockquote>
-          <footer className="text-sm font-label text-muted-foreground mt-4 uppercase tracking-widest">
-            — Charles Yu
-          </footer>
-        </BentoCell>
-
-        {/* Education Cell - 1x1 */}
-        <BentoCell
-          colSpan={1}
-          rowSpan={1}
-          className="p-6 flex flex-col justify-between"
-        >
-          <div className="flex justify-between items-start text-muted-foreground">
-            <span className="text-xs font-label uppercase tracking-wider">
-              Education
+              {skill}
             </span>
-            <GraduationCap size={18} />
-          </div>
-          <div>
-            <div className="text-xl font-heading font-medium">
-              CS @ UT Austin
-            </div>
-            <div className="text-sm font-body text-muted-foreground mt-1">
-              Minor in Stats & Data Science. ML & AI focus.
-            </div>
-          </div>
-        </BentoCell>
+          ))}
+        </div>
 
-        {/* Location Cell - 1x1 */}
-        <BentoCell colSpan={1} rowSpan={1}>
-          <LocationCell />
-        </BentoCell>
-
-        {/* Skills Cell - 2x1 */}
-        <BentoCell
-          colSpan={2}
-          rowSpan={1}
-          className="p-6 md:p-8 flex flex-col justify-between"
-        >
-          <div className="flex justify-between items-start text-muted-foreground mb-4">
-            <span className="text-xs font-label uppercase tracking-wider">
-              Tech Stack
-            </span>
-            <Code size={18} />
-          </div>
-          <div className="flex flex-wrap gap-2 mt-auto">
-            {skills.slice(0, 10).map((skill) => (
-              <span
-                key={skill}
-                className="px-3 py-1.5 bg-secondary text-secondary-foreground font-label text-xs uppercase tracking-wider rounded-md border border-border/50"
-              >
-                {skill}
-              </span>
-            ))}
-            <Link
-              href="/projects"
-              className="px-3 py-1.5 text-primary font-label text-xs uppercase tracking-wider rounded-md hover:bg-primary/10 transition-colors flex items-center gap-1"
-            >
-              + More <ArrowUpRight size={12} />
-            </Link>
-          </div>
-        </BentoCell>
-
-        {/* Music/Hobbies Cells - 1x1 each */}
-        <BentoCell
-          colSpan={1}
-          rowSpan={1}
-          className="p-6 flex flex-col justify-between"
-        >
-          <div className="flex justify-between items-start text-muted-foreground">
-            <span className="text-xs font-label uppercase tracking-wider">
-              Music
-            </span>
-            <Music size={18} />
-          </div>
-          <div className="mt-auto">
-            <div className="text-lg font-heading font-medium">
-              Saxophone & Piano
-            </div>
-            <div className="text-sm font-body text-muted-foreground mt-1">
-              Playing for 10+ years.
-            </div>
-          </div>
-        </BentoCell>
-
-        <BentoCell
-          colSpan={1}
-          rowSpan={1}
-          className="p-6 flex flex-col justify-between"
-        >
-          <div className="flex justify-between items-start text-muted-foreground">
-            <span className="text-xs font-label uppercase tracking-wider">
-              Play
-            </span>
-            <Gamepad2 size={18} />
-          </div>
-          <div className="mt-auto">
-            <div className="text-lg font-heading font-medium">
-              Chess & Tetris
-            </div>
-            <div className="text-sm font-body text-muted-foreground mt-1">
-              Always up for a match.
-            </div>
-          </div>
-        </BentoCell>
-
-        <BentoCell colSpan={2} rowSpan={1}>
+        <div className="flex flex-wrap items-center gap-3">
+          <Link
+            href="/resources/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1 text-sm text-muted-foreground border border-border rounded-md hover:text-primary hover:border-primary/50 transition-colors"
+          >
+            resume
+          </Link>
           <LiveClock />
-        </BentoCell>
-
-        {/* Now Playing - 1x1 */}
-        <BentoCell
-          colSpan={1}
-          rowSpan={1}
-          className="p-6 flex flex-col justify-center bg-secondary/30"
-        >
           <SpotifyNowPlaying />
-        </BentoCell>
+        </div>
 
-        {/* Currently Reading - 1x1 */}
-        <BentoCell
-          colSpan={1}
-          rowSpan={1}
-          className="p-6 flex flex-col justify-between"
-        >
-          <div className="flex justify-between items-start text-muted-foreground">
-            <span className="text-xs font-label uppercase tracking-wider">
-              Reading
-            </span>
-            <BookOpen size={18} />
-          </div>
-          <div className="mt-auto">
-            <div className="text-lg font-heading font-medium">Dune</div>
-            <div className="text-sm font-body text-muted-foreground mt-1">
-              by Frank Herbert
+        <div className="flex items-center gap-5 text-muted-foreground">
+          <a
+            href="https://github.com/mintoleda"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors"
+          >
+            <GithubIcon />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/adetola-adetunji/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-foreground transition-colors"
+          >
+            <LinkedInIcon />
+          </a>
+          <a
+            href="mailto:adetolaadetunji08@gmail.com"
+            className="hover:text-foreground transition-colors"
+          >
+            <MailIcon />
+          </a>
+        </div>
+      </section>
+
+      <section>
+        <GitHubGraph />
+      </section>
+
+      <section className="space-y-6">
+        <span className="text-muted-foreground text-sm">
+          $ cat experience.log
+        </span>
+        <div className="space-y-8">
+          {experience.map((exp) => (
+            <div key={exp.title} className="space-y-2">
+              <div className="flex items-center gap-3">
+                <span
+                  className="w-2 h-2 rounded-full shrink-0"
+                  style={{ backgroundColor: exp.color }}
+                />
+                <h3 className="font-bold text-foreground">{exp.title}</h3>
+              </div>
+              <p className="text-muted-foreground ml-5 leading-relaxed">
+                {exp.description}
+              </p>
             </div>
-          </div>
-        </BentoCell>
+          ))}
+        </div>
+      </section>
 
-        {/* Favorite Albums */}
+      <section className="space-y-4">
+        <span className="text-muted-foreground text-sm">$ cat albums.md</span>
         <FavoriteAlbums />
+      </section>
 
-        {/* Uses Link - 2x1 */}
-        <BentoCell
-          colSpan={2}
-          rowSpan={1}
-          className="p-6 flex flex-col justify-center items-center text-center group"
-        >
-          <div className="space-y-2">
-            <div className="flex justify-center items-center gap-2 text-muted-foreground">
-              <Monitor size={18} />
-              <span className="text-xs font-label uppercase tracking-wider">
-                My Setup
-              </span>
-            </div>
-            <Link
-              href="/uses"
-              className="text-2xl font-heading font-medium text-primary group-hover:text-primary/80 transition-colors flex items-center justify-center gap-2"
-            >
-              View my uses <ArrowUpRight size={20} />
-            </Link>
-          </div>
-        </BentoCell>
-      </BentoGrid>
+      <Footer />
     </div>
   );
 }

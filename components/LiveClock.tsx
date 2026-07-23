@@ -1,41 +1,29 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Clock } from "lucide-react";
 
 export function LiveClock() {
-  const [time, setTime] = useState<string>("");
+  const [time, setTime] = useState("");
 
   useEffect(() => {
-    const updateClock = () => {
+    const update = () => {
       setTime(
         new Intl.DateTimeFormat("en-US", {
           timeZone: "America/Chicago",
-          hour: "numeric",
+          hour: "2-digit",
           minute: "2-digit",
-          second: "2-digit",
-          hour12: true,
+          hour12: false,
         }).format(new Date())
       );
     };
-    
-    updateClock();
-    const intervalId = setInterval(updateClock, 1000);
-    return () => clearInterval(intervalId);
+    update();
+    const id = setInterval(update, 1000);
+    return () => clearInterval(id);
   }, []);
 
   return (
-    <div className="flex flex-col h-full justify-between p-6">
-      <div className="flex items-center justify-between text-muted-foreground">
-        <span className="text-xs font-label uppercase tracking-wider">Local Time</span>
-        <Clock size={16} />
-      </div>
-      <div className="flex flex-col">
-        <span className="text-3xl font-heading font-medium tracking-tight text-foreground">
-          {time || "Loading..."}
-        </span>
-        <span className="text-sm font-label text-muted-foreground">Austin, TX (CST)</span>
-      </div>
-    </div>
+    <span className="px-3 py-1 text-sm text-muted-foreground border border-border rounded-md">
+      {time || "--:--"}
+    </span>
   );
 }
