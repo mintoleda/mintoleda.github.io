@@ -8,15 +8,15 @@ export const metadata = {
 const items = [
   {
     label: "focus",
-    value: "summer",
+    value: "school",
   },
   {
     label: "building",
-    value: "talos",
-    href: "https://github.com/mintoleda/talos",
+    value: "--",
+    href: "",
   },
-  { label: "watching", value: "on hiatus" },
-  { label: "reading", value: "dune — frank herbert" },
+  { label: "watching", value: "--" },
+  { label: "reading", value: "--" },
 ];
 
 export default function NowPage() {
@@ -47,7 +47,7 @@ export default function NowPage() {
       </div>
 
       <div className="text-sm text-muted-foreground">
-        last updated: july 2026
+        last updated: october 2026
       </div>
 
       <footer className="flex items-center justify-between text-sm text-muted-foreground border-t border-border pt-8">
