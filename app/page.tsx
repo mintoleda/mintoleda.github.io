@@ -51,8 +51,8 @@ export default function Home() {
           <span className="text-muted-foreground font-normal">/ mintoleda</span>
         </h1>
         <p className="text-lg text-foreground max-w-xl leading-relaxed">
-          cs & data science at ut austin. i build backend systems, play
-          saxophone, and experiment with my{" "}
+          cs at ut austin, minoring in statistics & data science. i build
+          backend systems, play saxophone, and experiment with my{" "}
           <a
             href="https://github.com/mintoleda/dotfiles-hyprland"
             target="_blank"
@@ -72,9 +72,11 @@ export default function Home() {
           .
         </p>
 
-        <p className="text-foreground">
-          <span className="text-primary">▸</span> building backend systems with{" "}
-          <strong>java</strong>
+        <p className="flex items-start gap-2 text-foreground">
+          <span className="text-primary">▸</span>
+          <span>
+            director of internal technologies at <strong>sbi</strong>
+          </span>
         </p>
 
         <div className="flex flex-wrap gap-2">
@@ -138,12 +140,15 @@ export default function Home() {
         <div className="space-y-8">
           {experience.map((exp) => (
             <div key={exp.title} className="space-y-2">
-              <div className="flex items-center gap-3">
+              <div className="flex items-start gap-3">
                 <span
-                  className="w-2 h-2 rounded-full shrink-0"
+                  className="w-2 h-2 rounded-full shrink-0 mt-2"
                   style={{ backgroundColor: exp.color }}
                 />
-                <h3 className="font-bold text-foreground">{exp.title}</h3>
+                <div>
+                  <h3 className="font-bold text-foreground">{exp.title}</h3>
+                  <p className="text-sm text-muted-foreground">{exp.date}</p>
+                </div>
               </div>
               <p className="text-muted-foreground ml-5 leading-relaxed">
                 {exp.description}

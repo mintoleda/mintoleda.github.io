@@ -2,7 +2,7 @@ export const projects = [
   {
     title: "Morning Commute",
     description:
-      "Distributed microservices ecosystem for ride-hailing analytics using Kafka streams.",
+      "Three-service ride-hailing simulation streaming trip events through Kafka, calculating real-time surge pricing, and aggregating hourly demand in PostgreSQL with Kafka Streams and Docker Compose.",
     href: "https://github.com/mintoleda/morning-commute",
     tags: ["Java", "Kafka", "Spring Boot", "Docker", "PostgreSQL"],
   },
@@ -16,9 +16,9 @@ export const projects = [
   {
     title: "Perspect AI",
     description:
-      "AI study tool that turns any topic into a real-time debate between expert personas via Server-Sent Events.",
+      "Study tool that streams expert debates and a final study guide via Server-Sent Events. A Bun/Express endpoint uses Gemini 2.5 Flash to select personas, coordinate rebuttals, and synthesize takeaways.",
     href: "https://github.com/mintoleda/perspect-ai",
-    tags: ["Bun", "Express", "React", "TypeScript", "Gemini API"],
+    tags: ["Bun", "Express", "React", "TypeScript", "SSE", "Gemini API"],
   },
   {
     title: "InboxOrganizer",
